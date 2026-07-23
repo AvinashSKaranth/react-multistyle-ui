@@ -6,7 +6,7 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-json";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-python";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { CSSProperties, TextareaHTMLAttributes } from "react";
 
 if (!Prism.languages.svelte) {
@@ -66,8 +66,6 @@ export function CodeEditor({
   const highlighted = highlight(value, language);
   const langLabel = LANG_LABELS[language] ?? String(language).toUpperCase();
   const [copyStatus, setCopyStatus] = useState("");
-  const preEl = useRef<HTMLPreElement>(null);
-  const taEl = useRef<HTMLTextAreaElement>(null);
 
   async function copyCode() {
     try {
@@ -79,12 +77,6 @@ export function CodeEditor({
     setTimeout(() => setCopyStatus(""), 1800);
   }
   const copyLabel = copyStatus === "copied" ? "Copied!" : copyStatus === "failed" ? "Failed" : "Copy";
-  function syncScroll() {
-    if (preEl.current && taEl.current) {
-      preEl.current.scrollTop = taEl.current.scrollTop;
-      preEl.current.scrollLeft = taEl.current.scrollLeft;
-    }
-  }
 
   return (
     <div className={cn("s-codeeditor-wrapper", `s-codeeditor-${st}`, `theme-${th}`, className)}>
@@ -96,16 +88,14 @@ export function CodeEditor({
         </button>
       </div>
       <div className="s-codeeditor-code" style={{ ["--codeeditor-rows" as string]: rows } as CSSProperties}>
-        <pre ref={preEl} className="s-codeeditor-pre" aria-hidden="true">
+        <pre className="s-codeeditor-pre" aria-hidden="true">
           <code dangerouslySetInnerHTML={{ __html: highlighted + "\n" }} />
         </pre>
         {editable ? (
           <textarea
-            ref={taEl}
             className="s-codeeditor-textarea"
             value={value}
             onChange={(e) => onValueChange?.(e.target.value)}
-            onScroll={syncScroll}
             spellCheck={false}
             aria-label={label || "code editor"}
             {...rest}

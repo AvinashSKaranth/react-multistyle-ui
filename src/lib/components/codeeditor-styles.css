@@ -68,7 +68,7 @@
 .s-codeeditor-code {
   position: relative;
   height: calc(var(--codeeditor-rows, 10) * 1.5em + 24px);
-  overflow: hidden;
+  overflow: auto;
   background: var(--t-surface);
 }
 .s-codeeditor-pre,
@@ -83,11 +83,11 @@
   tab-size: 2;
   -moz-tab-size: 2;
   white-space: pre;
-  overflow: auto;
 }
 .s-codeeditor-pre {
   position: absolute;
   inset: 0;
+  overflow: visible;
   color: var(--t-text);
   background: transparent;
   border: 0;
@@ -101,6 +101,7 @@
 .s-codeeditor-textarea {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   color: transparent;
   caret-color: var(--t-text);
   background: transparent;
@@ -108,9 +109,6 @@
   resize: none;
   outline: none;
   -webkit-text-fill-color: transparent;
-}
-.s-codeeditor-textarea::selection {
-  background: color-mix(in srgb, var(--t-primary) 30%, transparent);
 }
 
 /* ===== PRISM TOKEN COLORS (re-hosted from demo app.css; package does not export app.css) ===== */
