@@ -41,7 +41,7 @@ Thumbs.db
 .husky
 
 # Demo + scripts (not shipped)
-dist-demo
+docs
 scripts
 index.html
 

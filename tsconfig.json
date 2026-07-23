@@ -25,6 +25,7 @@
       "@/*": ["src/*"]
     }
   },
+  "exclude": ["cli/fixtures"],
   "include": ["src", "tests", "cli"],
   "references": []
 }
