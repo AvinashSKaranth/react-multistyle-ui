@@ -1,0 +1,79 @@
+/* ===== BASE ===== */
+.s-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+.s-drawer {
+  position: fixed;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xl);
+  z-index: 1001;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* Positions */
+.drawer-left   { top: 0; left: 0; bottom: 0; width: 300px; max-width: 85vw; }
+.drawer-right  { top: 0; right: 0; bottom: 0; width: 300px; max-width: 85vw; }
+.drawer-top    { top: 0; left: 0; right: 0; height: auto; max-height: 40vh; }
+.drawer-bottom { bottom: 0; left: 0; right: 0; height: auto; max-height: 40vh; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-drawer-brutalist { border: 3px solid var(--t-text); font-family: 'Courier New', monospace; }
+
+/* Pixel */
+.s-drawer-pixel { border: 3px solid var(--t-primary); font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-drawer-neon { border-color: var(--t-primary); box-shadow: 0 0 20px var(--t-primary), 0 0 60px var(--t-shadow); }
+
+/* Metro */
+.s-drawer-metro { border-radius: 0; border: 2px solid var(--t-primary); box-shadow: none; }
+
+/* Bootstrap */
+.s-drawer-bootstrap { border: 1px solid var(--t-border);}
+
+/* Cartoon */
+.s-drawer-cartoon { border: 3px solid var(--t-text); box-shadow: 6px 0 0 var(--t-primary); font-weight: 700; }
+.drawer-left.s-drawer-cartoon { box-shadow: 6px 0 0 var(--t-primary); }
+.drawer-right.s-drawer-cartoon { box-shadow: -6px 0 0 var(--t-primary); }
+.drawer-top.s-drawer-cartoon { box-shadow: 0 6px 0 var(--t-primary); }
+.drawer-bottom.s-drawer-cartoon { box-shadow: 0 -6px 0 var(--t-primary); }
+
+/* Illustration */
+.s-drawer-illustration { border: 2px solid var(--t-text); box-shadow: 4px 4px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-drawer-carbon { border: 1px solid var(--t-border); font-family: 'IBM Plex Sans', sans-serif; border-top: 3px solid var(--t-primary); }
+
+/* Liquid Glass */
+.s-drawer-liquid-glass {
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.s-drawer-liquid-glass .demo-label,
+.s-drawer-liquid-glass .text-muted,
+.s-drawer-liquid-glass .text-hint { color: rgba(255,255,255,0.55); }
+/* Material3 */
+.s-drawer-material3.drawer-left   { border-radius: 0 16px 16px 0; }
+.s-drawer-material3.drawer-right  { border-radius: 16px 0 0 16px; }
+.s-drawer-material3.drawer-top    { border-radius: 0 0 16px 16px; }
+.s-drawer-material3.drawer-bottom { border-radius: 16px 16px 0 0; }
+
+/* Fluent */
+.s-drawer-fluent { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+/* Borderless overlays — declared last to win source-order over base border. */
+.s-drawer-material,
+.s-drawer-material3,
+.s-drawer-fluent { border: none; }

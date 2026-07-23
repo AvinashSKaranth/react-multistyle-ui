@@ -1,0 +1,47 @@
+/* ===== BASE ===== */
+/* Theme-controlled: background, border color, shadow. Style-controlled: shape. */
+.s-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--t-primary) 15%, var(--t-surface));
+  color: var(--t-primary);
+  font-weight: 600;
+  overflow: hidden;
+  border: var(--t-border-width) solid var(--t-border);
+  transition: all 0.2s ease;
+}
+.s-avatar.avatar-sm { width: 32px; height: 32px; font-size: 12px; }
+.s-avatar.avatar-md { width: 40px; height: 40px; font-size: 14px; }
+.s-avatar.avatar-lg { width: 56px; height: 56px; font-size: 18px; }
+.s-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-avatar-brutalist { border-radius: 0; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-text); }
+
+/* Pixel */
+.s-avatar-pixel { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); }
+
+/* Neon */
+.s-avatar-neon { border-color: var(--t-primary); box-shadow: 0 0 5px var(--t-primary), 0 0 10px var(--t-shadow); }
+
+/* Metro */
+.s-avatar-metro { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); box-shadow: none; }
+
+/* Bootstrap */
+.s-avatar-bootstrap { border: var(--t-border-width) solid var(--t-border); box-shadow: var(--t-shadow-xs); }
+
+/* Cartoon */
+.s-avatar-cartoon { border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); }
+
+/* Illustration */
+.s-avatar-illustration { border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); }
+
+/* Carbon */
+.s-avatar-carbon { border-radius: 50%; border: var(--t-border-width) solid var(--t-border); }
+
+/* Liquid Glass */
+.s-avatar-liquid-glass { backdrop-filter: blur(16px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }

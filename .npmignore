@@ -1,0 +1,53 @@
+# Source + dev artifacts (published content is dist/ + cli/, per package.json "files")
+src
+tests
+test
+__tests__
+coverage
+
+# Build/config/cache
+node_modules
+.vite
+.cache
+.parcel-cache
+.eslintcache
+*.tsbuildinfo
+
+# TS/Vite configs
+tsconfig.json
+tsconfig.*.json
+vite.config.ts
+vite.config.*.ts
+vitest.config.*
+playwright.config.ts
+
+# Source-maps for non-published artifacts (keep .d.ts maps out of dist via build already)
+*.map
+!dist/**/*.map
+
+# Editor + OS noise
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*.swo
+
+# Tooling dirs
+.codegraph
+.serena
+.claude
+.github
+.husky
+
+# Demo + scripts (not shipped)
+dist-demo
+scripts
+index.html
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

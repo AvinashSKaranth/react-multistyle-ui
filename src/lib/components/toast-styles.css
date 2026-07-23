@@ -1,0 +1,103 @@
+/* ===== BASE ===== */
+.s-toast-container {
+  position: fixed;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.s-toast-container.toast-top-right    { top: 20px; right: 20px; align-items: flex-end; }
+.s-toast-container.toast-top-left     { top: 20px; left: 20px; align-items: flex-start; }
+.s-toast-container.toast-top-center   { top: 20px; left: 50%; transform: translateX(-50%); align-items: center; }
+.s-toast-container.toast-bottom-right { bottom: 20px; right: 20px; align-items: flex-end; flex-direction: column-reverse; }
+.s-toast-container.toast-bottom-left  { bottom: 20px; left: 20px; align-items: flex-start; flex-direction: column-reverse; }
+.s-toast-container.toast-bottom-center { bottom: 20px; left: 50%; transform: translateX(-50%); align-items: center; flex-direction: column-reverse; }
+
+.s-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  background: var(--t-surface);
+  color: var(--t-text);
+  font-size: 14px;
+  box-shadow: var(--t-shadow-lg);
+  pointer-events: auto;
+  max-width: 400px;
+  min-width: 280px;
+  position: relative;
+  overflow: hidden;
+}
+.s-toast-icon { flex-shrink: 0; font-size: 18px; line-height: 1.4; }
+.s-toast-content { flex: 1; min-width: 0; }
+.s-toast-title { font-weight: 600; margin-bottom: 2px; }
+.s-toast-message { line-height: 1.4; color: var(--t-text-hint); font-size: 13px; }
+.s-toast-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--t-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+.s-toast-close:hover { color: var(--t-text); }
+
+/* Toast progress bar (for auto-dismiss) */
+.s-toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--t-primary);
+  opacity: 0.3;
+  animation: toast-shrink linear forwards;
+}
+@keyframes toast-shrink {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* Variants */
+.s-toast-info    { border-color: #3b82f6; background: color-mix(in srgb, #3b82f6 8%, var(--t-surface)); }
+.s-toast-success { border-color: #22c55e; background: color-mix(in srgb, #22c55e 8%, var(--t-surface)); }
+.s-toast-warning { border-color: #eab308; background: color-mix(in srgb, #eab308 8%, var(--t-surface)); }
+.s-toast-error   { border-color: #ef4444; background: color-mix(in srgb, #ef4444 8%, var(--t-surface)); }
+.s-toast-info    .s-toast-progress { background: #3b82f6; }
+.s-toast-success .s-toast-progress { background: #22c55e; }
+.s-toast-warning .s-toast-progress { background: #eab308; }
+.s-toast-error   .s-toast-progress { background: #ef4444; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-toast-brutalist { border: 3px solid var(--t-text); border-radius: 0; box-shadow: 4px 4px 0 var(--t-text); font-family: 'Courier New', monospace; }
+
+/* Pixel */
+.s-toast-pixel { border: 3px solid var(--t-primary); border-radius: 0; font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-toast-neon { border-color: var(--t-primary); box-shadow: 0 0 10px var(--t-primary), 0 0 30px var(--t-shadow); }
+
+/* Metro */
+.s-toast-metro { border-radius: 0; border: 2px solid var(--t-primary); border-left-width: 4px; font-weight: 600; box-shadow: none; }
+
+/* Bootstrap */
+.s-toast-bootstrap { border-radius: 6px; border: 1px solid var(--t-border); box-shadow: var(--t-shadow-md); }
+
+/* Cartoon */
+.s-toast-cartoon { border-radius: 16px; border: 3px solid var(--t-text); box-shadow: 5px 5px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-toast-illustration { border-radius: 8px; border: 2px solid var(--t-text); box-shadow: 3px 3px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-toast-carbon { border-radius: 0; border: 1px solid var(--t-border); border-left: 3px solid var(--t-primary); font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Liquid Glass */
+.s-toast-liquid-glass { border-radius: 16px; backdrop-filter: blur(24px) saturate(1.6); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); box-shadow: var(--t-shadow-lg), inset 0 1px 0 rgba(255,255,255,0.3); }

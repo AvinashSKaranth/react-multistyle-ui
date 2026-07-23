@@ -1,0 +1,117 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow. Style-controlled: shape. */
+.s-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.s-checkbox.disabled { opacity: 0.45; pointer-events: none; }
+.s-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+.s-checkbox-box {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: 4px;
+  background: var(--t-surface);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+.s-checkbox-box:hover { border-color: var(--t-primary); }
+.s-checkbox.checked .s-checkbox-box {
+  background: var(--t-primary);
+  border-color: var(--t-primary);
+}
+.s-checkbox-icon {
+  color: var(--t-text-on-primary);
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.15s ease;
+}
+.s-checkbox.checked .s-checkbox-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+.s-checkbox-label { font-size: 14px; color: var(--t-text); }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-checkbox-brutalist .s-checkbox-box {
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--t-text);
+}
+
+/* Pixel */
+.s-checkbox-pixel .s-checkbox-box {
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: 0;
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.25);
+}
+
+/* Neon */
+.s-checkbox-neon .s-checkbox-box {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 4px var(--t-primary);
+}
+.s-checkbox-neon.checked .s-checkbox-box { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-checkbox-metro .s-checkbox-box {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  box-shadow: none;
+}
+
+/* Bootstrap */
+.s-checkbox-bootstrap .s-checkbox-box {
+  border-radius: 4px;
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-checkbox-bootstrap.checked .s-checkbox-box { box-shadow: 0 0 0 3px var(--t-shadow); }
+
+/* Cartoon */
+.s-checkbox-cartoon .s-checkbox-box {
+  border-radius: 8px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-primary);
+}
+
+/* Illustration */
+.s-checkbox-illustration .s-checkbox-box {
+  border-radius: 4px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 2px 2px 0 var(--t-border);
+}
+
+/* Carbon */
+.s-checkbox-carbon .s-checkbox-box {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-border);
+  border-bottom-width: 2px;
+}
+.s-checkbox-carbon.checked .s-checkbox-box { border-bottom-color: var(--t-primary); }
+
+/* Liquid Glass */
+.s-checkbox-liquid-glass .s-checkbox-box {
+  border-radius: 8px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--t-shadow-sm), inset 0 1px 0 rgba(255,255,255,0.3);
+}

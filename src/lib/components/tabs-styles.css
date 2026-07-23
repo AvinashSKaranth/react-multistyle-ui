@@ -1,0 +1,70 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width. Style-controlled: tab shape. */
+.s-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--t-border);
+  width: 100%;
+}
+.s-tab {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--t-text-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+}
+.s-tab:hover { color: var(--t-text); }
+.s-tab.active {
+  color: var(--t-primary);
+  border-bottom-color: var(--t-primary);
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-tabs-brutalist { border-bottom: var(--t-border-width) solid var(--t-text); }
+.s-tabs-brutalist .s-tab { font-family: 'Courier New', monospace; font-weight: bold; }
+.s-tabs-brutalist .s-tab.active { border-bottom: var(--t-border-width) solid var(--t-primary); background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface)); }
+
+/* Pixel */
+.s-tabs-pixel { border-bottom: var(--t-border-width) solid var(--t-primary); }
+.s-tabs-pixel .s-tab { font-family: 'Courier New', monospace; }
+.s-tabs-pixel .s-tab.active { border-bottom: var(--t-border-width) solid var(--t-secondary); }
+
+/* Neon */
+.s-tabs-neon { border-bottom-color: var(--t-primary); box-shadow: 0 2px 4px var(--t-shadow); }
+.s-tabs-neon .s-tab.active { text-shadow: 0 0 4px var(--t-primary); }
+
+/* Metro */
+.s-tabs-metro { border-bottom: var(--t-border-width) solid var(--t-primary); }
+.s-tabs-metro .s-tab { font-weight: 600; }
+.s-tabs-metro .s-tab.active { background: var(--t-primary); color: var(--t-text-on-primary); border-bottom-color: var(--t-primary); }
+
+/* Bootstrap */
+.s-tabs-bootstrap { border-bottom: var(--t-border-width) solid var(--t-border); }
+.s-tabs-bootstrap .s-tab { border-radius: 6px 6px 0 0; }
+.s-tabs-bootstrap .s-tab.active { border: var(--t-border-width) solid var(--t-border); border-bottom-color: var(--t-surface); background: var(--t-surface); }
+
+/* Cartoon */
+.s-tabs-cartoon { border-bottom: var(--t-border-width) solid var(--t-text); }
+.s-tabs-cartoon .s-tab { font-weight: 700; border-radius: 12px 12px 0 0; }
+.s-tabs-cartoon .s-tab.active { background: var(--t-primary); color: var(--t-text-on-primary); border-bottom: var(--t-border-width) solid var(--t-primary); box-shadow: 3px -3px 0 var(--t-text); }
+
+/* Illustration */
+.s-tabs-illustration { border-bottom: var(--t-border-width) solid var(--t-text); }
+.s-tabs-illustration .s-tab { font-style: italic; }
+.s-tabs-illustration .s-tab.active { border-bottom: var(--t-border-width) solid var(--t-primary); }
+
+/* Carbon */
+.s-tabs-carbon { border-bottom: var(--t-border-width) solid var(--t-border); }
+.s-tabs-carbon .s-tab { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; }
+.s-tabs-carbon .s-tab.active { border-bottom: 2px solid var(--t-primary); }
+
+/* Liquid Glass */
+.s-tabs-liquid-glass { border-bottom: 1px solid rgba(255,255,255,0.2); }
+.s-tabs-liquid-glass .s-tab.active { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius: 8px 8px 0 0; }

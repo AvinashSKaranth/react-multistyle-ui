@@ -1,0 +1,60 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow. Style-controlled: shape. */
+.s-pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.s-pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 4px 10px;
+  font-size: 14px;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  background: var(--t-surface);
+  color: var(--t-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.s-pagination-btn:hover { border-color: var(--t-primary); color: var(--t-primary); }
+.s-pagination-btn.active {
+  background: var(--t-primary);
+  color: var(--t-text-on-primary);
+  border-color: var(--t-primary);
+}
+.s-pagination-btn:disabled { opacity: 0.4; pointer-events: none; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-pagination-brutalist .s-pagination-btn { border: var(--t-border-width) solid var(--t-text); border-radius: 0; box-shadow: 2px 2px 0 var(--t-text); font-family: 'Courier New', monospace; font-weight: bold; }
+
+/* Pixel */
+.s-pagination-pixel .s-pagination-btn { border: var(--t-border-width) solid var(--t-primary); border-radius: 0; font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-pagination-neon .s-pagination-btn { border-color: var(--t-primary); box-shadow: 0 0 4px var(--t-primary); }
+.s-pagination-neon .s-pagination-btn.active { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-pagination-metro .s-pagination-btn { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); font-weight: 600; box-shadow: none; }
+
+/* Bootstrap */
+.s-pagination-bootstrap .s-pagination-btn { border-radius: 6px; border: var(--t-border-width) solid var(--t-border); box-shadow: var(--t-shadow-xs); }
+
+/* Cartoon */
+.s-pagination-cartoon .s-pagination-btn { border-radius: 12px; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-pagination-illustration .s-pagination-btn { border-radius: 8px; border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); }
+
+/* Carbon */
+.s-pagination-carbon .s-pagination-btn { border-radius: 0; border: var(--t-border-width) solid var(--t-border); font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Liquid Glass */
+.s-pagination-liquid-glass .s-pagination-btn { border-radius: 12px; backdrop-filter: blur(16px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+.s-pagination-liquid-glass .s-pagination-btn.active { background: color-mix(in srgb, var(--t-primary) 60%, transparent); }

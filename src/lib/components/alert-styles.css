@@ -1,0 +1,63 @@
+/* ===== BASE ===== */
+/* Theme-controlled: surface, border-width, shadow. Style-controlled: shape. */
+.s-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  background: var(--t-surface);
+  color: var(--t-text);
+  font-size: 14px;
+  position: relative;
+}
+.s-alert-icon { flex-shrink: 0; font-size: 18px; }
+.s-alert-content { flex: 1; }
+.s-alert-title { display: block; font-weight: 600; margin-bottom: 2px; }
+.s-alert-body { line-height: 1.5; }
+.s-alert-dismiss {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--t-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+}
+.s-alert-info { border-color: var(--t-info); background: color-mix(in srgb, var(--t-info) 8%, var(--t-surface)); }
+.s-alert-success { border-color: var(--t-success); background: color-mix(in srgb, var(--t-success) 8%, var(--t-surface)); }
+.s-alert-warning { border-color: var(--t-warning); background: color-mix(in srgb, var(--t-warning) 8%, var(--t-surface)); }
+.s-alert-error { border-color: var(--t-error); background: color-mix(in srgb, var(--t-error) 8%, var(--t-surface)); }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-alert-brutalist { border: var(--t-border-width) solid var(--t-text); border-radius: 0; box-shadow: 4px 4px 0 var(--t-text); font-family: 'Courier New', monospace; }
+
+/* Pixel */
+.s-alert-pixel { border: var(--t-border-width) solid var(--t-primary); border-radius: 0; font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-alert-neon { border-color: var(--t-primary); box-shadow: 0 0 5px var(--t-primary); }
+
+/* Metro */
+.s-alert-metro { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); border-left-width: 4px; font-weight: 600; box-shadow: none; }
+
+/* Bootstrap */
+.s-alert-bootstrap { border-radius: 6px; border: var(--t-border-width) solid var(--t-border); box-shadow: var(--t-shadow-xs); }
+
+/* Cartoon */
+.s-alert-cartoon { border-radius: 16px; border: var(--t-border-width) solid var(--t-text); box-shadow: 4px 4px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-alert-illustration { border-radius: 8px; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-alert-carbon { border-radius: 0; border: var(--t-border-width) solid var(--t-border); border-left-width: 3px; border-left-color: var(--t-primary); font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Liquid Glass */
+.s-alert-liquid-glass { border-radius: 16px; backdrop-filter: blur(24px) saturate(1.6); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255,255,255,0.3); }

@@ -1,0 +1,87 @@
+/* ===== THEME BASE =====
+ * Default token values. Import this file alone to build a completely custom
+ * theme by overriding any --t-* variable before or after this import.
+ */
+
+:root {
+  /* Primary palette — corporate blue */
+  --t-primary: #2563eb;
+  --t-secondary: #3b82f6;
+
+  /* Surfaces */
+  --t-surface: #ffffff;
+  --t-card-bg: #ffffff;
+  --t-card-surface: #f8fafc;
+  --t-card-border-color: #e2e8f0;
+  --t-surface-bg: #f1f5f9;
+
+  /* Text */
+  --t-text: #0f172a;
+  --t-text-on-primary: #ffffff; /* text color when background is primary */
+  --t-text-hint: color-mix(in srgb, var(--t-text) 50%, transparent); /* derived, not configurable */
+  --t-text-disabled: color-mix(in srgb, var(--t-text) 50%, transparent); /* derived */
+  --t-text-primary: #2563eb;
+  --t-text-secondary: #3b82f6;
+
+  /* Status palette */
+  --t-info: #3b82f6;
+  --t-success: #22c55e;
+  --t-warning: #eab308;
+  --t-error: #ef4444;
+  --t-text-info: #2563eb;
+  --t-text-success: #16a34a;
+  --t-text-warning: #a16207;
+  --t-text-error: #dc2626;
+
+  /* Buttons */
+  --t-btn-bg: #2563eb;
+  --t-btn-border-color: transparent;
+  --t-btn-radius: 8px;
+
+  /* Cards / inputs */
+  --t-card-radius: 12px;
+  --t-input-radius: 8px;
+
+  /* Shared dimensional tokens */
+  --t-border-width: 1.5px;
+  --t-border-w: var(--t-border-width); /* backward-compatible alias */
+
+  /* Font — the active font stack. Per-style defaults ship in theme.css as
+   * .ms-font-<style> rules; initMultistyleUI({ font }) or a wrapper class can
+   * override it. Components inherit font-family, so setting --t-font upstream
+   * is enough. */
+  --t-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shadow tokens (color-independent elevation) */
+  --t-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --t-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --t-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --t-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --t-shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  /* Theme-colored shadows */
+  --t-shadow-colored-sm: 0 1px 3px var(--t-shadow);
+  --t-shadow-colored-md: 0 4px 12px var(--t-shadow);
+  --t-shadow-colored-lg: 0 8px 24px var(--t-shadow);
+  --t-shadow: color-mix(in srgb, var(--t-primary) 18%, transparent);
+
+  /* Convenience aliases (kept for backward compatibility) */
+  --t-border: var(--t-card-border-color);
+  --t-radius: var(--t-btn-radius);
+  --t-text-muted: var(--t-text-hint);
+  --t-surface-dim: var(--t-surface-bg);
+}
+
+/* liquid-glass style — keep text light in LIGHT mode.
+ * Glass surfaces are dark-ish translucent, so the theme's dark light-mode text
+ * is unreadable on them. Override --t-text to white AND re-bake the
+ * --t-text-hint / --t-text-muted / --t-text-disabled derivations with white:
+ * a color-mix() custom property bakes at its declaring element, so the :root
+ * derivation (baked with dark text) would otherwise be inherited as a fixed
+ * dark color and stay invisible on glass. Dark mode is unaffected. */
+html:not(.dark) [class*="-liquid-glass"] {
+  --t-text: #ffffff;
+  --t-text-hint: color-mix(in srgb, #ffffff 50%, transparent);
+  --t-text-muted: color-mix(in srgb, #ffffff 50%, transparent);
+  --t-text-disabled: color-mix(in srgb, #ffffff 50%, transparent);
+}

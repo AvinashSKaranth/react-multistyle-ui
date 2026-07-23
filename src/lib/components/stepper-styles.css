@@ -1,0 +1,144 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width. Style-controlled: shape. */
+.s-stepper-wrap {
+  position: relative;
+  width: 100%;
+}
+.s-stepper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+  flex-wrap: nowrap;
+  /* On narrow widths the steps keep their natural size and the row scrolls
+     horizontally instead of squashing the labels. */
+  overflow-x: auto;
+  /* Hide the native scrollbar — navigation is via the translucent arrows. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.s-stepper::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Translucent scroll arrows. Only rendered when that direction is scrollable. */
+.s-stepper-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0px solid var(--t-card-border-color);
+  background: color-mix(in srgb, var(--t-surface) 0%, transparent);
+  color: var(--t-text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.s-stepper-arrow.left { left: -18px; }
+.s-stepper-arrow.right { right: -18px; }
+.s-stepper-arrow:hover {
+  background: var(--t-primary);
+  border-color: var(--t-primary);
+  color: var(--t-text-on-primary);
+}
+.s-stepper-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+.s-stepper-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Text/circle keep their natural width — they must NOT expand or contract.
+     Only the connector line flexes to fill the space between steps. */
+  flex: 0 0 auto;
+}
+.s-stepper-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  border: var(--t-border-width) solid var(--t-border);
+  background: var(--t-surface);
+  color: var(--t-text-muted);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.s-stepper-step.active .s-stepper-circle {
+  background: var(--t-primary);
+  border-color: var(--t-primary);
+  color: var(--t-text-on-primary);
+}
+.s-stepper-step.completed .s-stepper-circle {
+  background: var(--t-primary);
+  border-color: var(--t-primary);
+  color: var(--t-text-on-primary);
+}
+.s-stepper-label { font-size: 13px; color: var(--t-text-muted); white-space: nowrap; }
+.s-stepper-step.active .s-stepper-label { color: var(--t-primary); font-weight: 500; }
+.s-stepper-step.completed .s-stepper-label { color: var(--t-text); }
+.s-stepper-connector {
+  flex: 1;
+  /* Keep a floor so the line stays visible and the row scrolls (instead of
+     the line collapsing to zero) on narrow viewports. */
+  min-width: 32px;
+  height: 2px;
+  background: var(--t-border);
+  margin: 0 8px;
+  transition: background 0.2s;
+}
+.s-stepper-connector.completed {
+  background: var(--t-primary);
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-stepper-brutalist .s-stepper-circle { border-radius: 0; border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-text); }
+.s-stepper-brutalist .s-stepper-connector { height: var(--t-border-width); background: var(--t-text); }
+.s-stepper-brutalist .s-stepper-connector.completed { background: var(--t-primary); }
+
+/* Pixel */
+.s-stepper-pixel .s-stepper-circle { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); }
+.s-stepper-pixel .s-stepper-label { font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-stepper-neon .s-stepper-circle { box-shadow: 0 0 4px var(--t-primary); }
+.s-stepper-neon .s-stepper-step.active .s-stepper-circle { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-stepper-metro .s-stepper-circle { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); }
+.s-stepper-metro .s-stepper-label { font-weight: 600; }
+
+/* Bootstrap */
+.s-stepper-bootstrap .s-stepper-circle { border: var(--t-border-width) solid var(--t-border); box-shadow: var(--t-shadow-xs); }
+
+/* Cartoon */
+.s-stepper-cartoon .s-stepper-circle { border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); }
+.s-stepper-cartoon .s-stepper-label { font-weight: 700; }
+
+/* Illustration */
+.s-stepper-illustration .s-stepper-circle { border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); }
+.s-stepper-illustration .s-stepper-label { font-style: italic; }
+
+/* Carbon */
+.s-stepper-carbon .s-stepper-circle { border-radius: 50%; border: var(--t-border-width) solid var(--t-border); }
+.s-stepper-carbon .s-stepper-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; }
+
+/* Liquid Glass */
+.s-stepper-liquid-glass .s-stepper-circle { backdrop-filter: blur(16px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+.s-stepper-liquid-glass .s-stepper-step.active .s-stepper-circle { background: color-mix(in srgb, var(--t-primary) 60%, transparent); }

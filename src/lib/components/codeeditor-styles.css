@@ -1,0 +1,302 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow, radius. Style-controlled: shape. */
+.s-codeeditor-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--t-card-bg);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  box-shadow: var(--t-shadow-xs);
+  overflow: hidden;
+}
+.s-codeeditor-label {
+  display: block;
+  padding: 10px 14px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t-text);
+}
+.s-codeeditor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: var(--t-border-width) solid var(--t-border);
+  background: color-mix(in srgb, var(--t-surface) 60%, transparent);
+}
+.s-codeeditor-lang {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--t-text-muted);
+}
+.s-codeeditor-copy-btn {
+  appearance: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: var(--t-input-radius);
+  background: var(--t-primary);
+  color: var(--t-text-on-primary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.s-codeeditor-copy-btn:hover {
+  filter: brightness(1.08);
+}
+.s-codeeditor-copy-btn:active {
+  transform: translateY(1px);
+}
+.s-codeeditor-copy-btn.copied {
+  border-color: var(--t-success);
+  background: var(--t-success);
+}
+.s-codeeditor-copy-btn.failed {
+  border-color: var(--t-error);
+  background: var(--t-error);
+}
+
+/* Code area + overlay. pre (highlighted, behind) and textarea (transparent, front)
+   MUST share identical font metrics, padding, line-height, white-space and tab-size
+   so the caret lines up with the tokens. */
+.s-codeeditor-code {
+  position: relative;
+  height: calc(var(--codeeditor-rows, 10) * 1.5em + 24px);
+  overflow: hidden;
+  background: var(--t-surface);
+}
+.s-codeeditor-pre,
+.s-codeeditor-textarea {
+  margin: 0;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  tab-size: 2;
+  -moz-tab-size: 2;
+  white-space: pre;
+  overflow: auto;
+}
+.s-codeeditor-pre {
+  position: absolute;
+  inset: 0;
+  color: var(--t-text);
+  background: transparent;
+  border: 0;
+  pointer-events: none;
+}
+.s-codeeditor-pre code {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+.s-codeeditor-textarea {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  caret-color: var(--t-text);
+  background: transparent;
+  border: 0;
+  resize: none;
+  outline: none;
+  -webkit-text-fill-color: transparent;
+}
+.s-codeeditor-textarea::selection {
+  background: color-mix(in srgb, var(--t-primary) 30%, transparent);
+}
+
+/* ===== PRISM TOKEN COLORS (re-hosted from demo app.css; package does not export app.css) ===== */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--t-text-hint, #94a3b8);
+}
+.token.punctuation {
+  color: color-mix(in srgb, var(--t-text) 60%, transparent);
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f472b6;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #34d399;
+}
+.token.operator,
+.token.entity,
+.token.url {
+  color: #fbbf24;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #818cf8;
+}
+.token.function,
+.token.class-name {
+  color: #60a5fa;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f97316;
+}
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+/* Material is the base default. */
+.s-codeeditor-material3 {
+  border-radius: var(--t-input-radius);
+  box-shadow: none;
+}
+.s-codeeditor-material3 .s-codeeditor-toolbar {
+  background: color-mix(in srgb, var(--t-primary) 6%, var(--t-surface));
+}
+
+.s-codeeditor-fluent {
+  border-radius: 6px;
+  box-shadow: var(--t-shadow-xs);
+}
+.s-codeeditor-fluent .s-codeeditor-toolbar {
+  border-bottom-width: 1px;
+}
+
+.s-codeeditor-brutalist {
+  border: 2px solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 5px 5px 0 var(--t-text);
+}
+.s-codeeditor-brutalist .s-codeeditor-copy-btn {
+  border-radius: 0;
+  border: 2px solid var(--t-text);
+  font-weight: 800;
+}
+
+.s-codeeditor-pixel {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.25),
+    inset 3px 3px 0 rgba(255, 255, 255, 0.1);
+}
+.s-codeeditor-pixel .s-codeeditor-pre,
+.s-codeeditor-pixel .s-codeeditor-textarea {
+  font-family: "Courier New", monospace;
+}
+.s-codeeditor-pixel .s-codeeditor-copy-btn {
+  border-radius: 0;
+}
+
+.s-codeeditor-neon {
+  border-radius: var(--t-input-radius);
+  border-color: var(--t-primary);
+  box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow);
+}
+.s-codeeditor-neon .s-codeeditor-copy-btn {
+  box-shadow: 0 0 6px var(--t-primary);
+}
+
+.s-codeeditor-metro {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  box-shadow: none;
+}
+.s-codeeditor-metro .s-codeeditor-toolbar {
+  background: var(--t-primary);
+  color: var(--t-text-on-primary);
+}
+.s-codeeditor-metro .s-codeeditor-lang {
+  color: var(--t-text-on-primary);
+}
+
+.s-codeeditor-bootstrap {
+  border-radius: 6px;
+  box-shadow: var(--t-shadow-xs);
+}
+.s-codeeditor-bootstrap .s-codeeditor-copy-btn {
+  border-radius: 4px;
+}
+
+.s-codeeditor-cartoon {
+  border-radius: 16px;
+  border: 2px solid var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-primary);
+}
+.s-codeeditor-cartoon .s-codeeditor-copy-btn {
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.s-codeeditor-illustration {
+  border-radius: 12px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-border);
+}
+.s-codeeditor-illustration .s-codeeditor-toolbar {
+  font-style: italic;
+}
+
+.s-codeeditor-carbon {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-border);
+  border-bottom-width: 2px;
+  box-shadow: none;
+}
+.s-codeeditor-carbon .s-codeeditor-pre,
+.s-codeeditor-carbon .s-codeeditor-textarea {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.s-codeeditor-liquid-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.s-codeeditor-liquid-glass .s-codeeditor-toolbar {
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+.s-codeeditor-liquid-glass .s-codeeditor-code {
+  background: rgba(0, 0, 0, 0.12);
+}
+.s-codeeditor-liquid-glass .s-codeeditor-copy-btn {
+  background: color-mix(in srgb, var(--t-primary) 78%, transparent);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+.s-codeeditor-liquid-glass .s-codeeditor-copy-btn.copied {
+  background: color-mix(in srgb, var(--t-success) 78%, transparent);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+.s-codeeditor-liquid-glass .s-codeeditor-copy-btn.failed {
+  background: color-mix(in srgb, var(--t-error) 78%, transparent);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}

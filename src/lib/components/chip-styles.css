@@ -1,0 +1,104 @@
+/* ===== BASE ===== */
+.s-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 999px;
+  border: var(--t-border-width) solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: default;
+}
+.s-chip-icon { font-size: 14px; line-height: 1; }
+.s-chip-label { line-height: 1.4; }
+
+/* Variants */
+.chip-filled.chip-primary {
+  background: color-mix(in srgb, var(--t-primary) 15%, var(--t-surface));
+  color: var(--t-primary);
+  border-color: transparent;
+}
+.chip-filled.chip-secondary { background: color-mix(in srgb, var(--t-secondary) 15%, var(--t-surface)); color: var(--t-secondary); }
+.chip-filled.chip-success { background: color-mix(in srgb, var(--t-success) 15%, var(--t-surface)); color: var(--t-text-success); }
+.chip-filled.chip-warning { background: color-mix(in srgb, var(--t-warning) 15%, var(--t-surface)); color: var(--t-text-warning); }
+.chip-filled.chip-error   { background: color-mix(in srgb, var(--t-error) 15%, var(--t-surface)); color: var(--t-text-error); }
+.chip-filled.chip-info    { background: color-mix(in srgb, var(--t-info) 15%, var(--t-surface)); color: var(--t-text-info); }
+.chip-filled.chip-neutral { background: color-mix(in srgb, #64748b 15%, var(--t-surface)); color: var(--t-text); }
+
+.chip-outlined.chip-primary {
+  background: transparent;
+  color: var(--t-primary);
+  border-color: color-mix(in srgb, var(--t-primary) 30%, transparent);
+}
+.chip-outlined.chip-secondary { background: transparent; color: var(--t-secondary); border-color: color-mix(in srgb, var(--t-secondary) 30%, transparent); }
+.chip-outlined.chip-success { background: transparent; color: var(--t-text-success); border-color: color-mix(in srgb, var(--t-success) 30%, transparent); }
+.chip-outlined.chip-warning { background: transparent; color: var(--t-text-warning); border-color: color-mix(in srgb, var(--t-warning) 30%, transparent); }
+.chip-outlined.chip-error   { background: transparent; color: var(--t-text-error); border-color: color-mix(in srgb, var(--t-error) 30%, transparent); }
+.chip-outlined.chip-info    { background: transparent; color: var(--t-text-info); border-color: color-mix(in srgb, var(--t-info) 30%, transparent); }
+.chip-outlined.chip-neutral { background: transparent; color: var(--t-text-hint); border-color: var(--t-border); }
+
+.chip-ghost.chip-primary { background: transparent; color: var(--t-primary); border-color: transparent; }
+.chip-ghost.chip-secondary { background: transparent; color: var(--t-secondary); border-color: transparent; }
+.chip-ghost.chip-success { background: transparent; color: var(--t-text-success); border-color: transparent; }
+.chip-ghost.chip-warning { background: transparent; color: var(--t-text-warning); border-color: transparent; }
+.chip-ghost.chip-error   { background: transparent; color: var(--t-text-error); border-color: transparent; }
+.chip-ghost.chip-info    { background: transparent; color: var(--t-text-info); border-color: transparent; }
+.chip-ghost.chip-neutral { background: transparent; color: var(--t-text-hint); border-color: transparent; }
+
+/* Sizes */
+.chip-sm { padding: 2px 8px; font-size: 11px; }
+.chip-md { padding: 4px 12px; font-size: 13px; }
+.chip-lg { padding: 6px 16px; font-size: 14px; }
+
+/* Dismiss */
+.s-chip-dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 13px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  padding: 0;
+  transition: opacity 0.15s;
+  border-radius: 50%;
+}
+.s-chip-dismiss:hover { opacity: 1; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-chip-brutalist { border-radius: 0; border: 2px solid var(--t-text); font-family: 'Courier New', monospace; }
+.s-chip-brutalist.chip-outlined { border-color: var(--t-text); }
+
+/* Pixel */
+.s-chip-pixel { border-radius: 0; border: 2px solid var(--t-primary); font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-chip-neon { border-color: var(--t-primary); box-shadow: 0 0 4px var(--t-primary); }
+
+/* Metro */
+.s-chip-metro { border-radius: 0; border: 2px solid var(--t-primary); font-weight: 600; }
+
+/* Bootstrap */
+.s-chip-bootstrap { border-radius: 6px; border: 1px solid var(--t-border); }
+
+/* Cartoon */
+.s-chip-cartoon { border-radius: 999px; border: 2px solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-chip-illustration { border-radius: 8px; border: 2px solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-chip-carbon { border-radius: 0; border: 1px solid var(--t-border); font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; }
+
+/* Liquid Glass */
+.s-chip-liquid-glass { border-radius: 999px; backdrop-filter: blur(16px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }

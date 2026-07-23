@@ -1,0 +1,121 @@
+/* ===== BASE ===== */
+/* Style-controlled: track shape, thumb shape. Theme-controlled: colors, shadow. */
+.s-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.s-toggle.disabled { opacity: 0.45; pointer-events: none; }
+.s-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+.s-toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--t-border);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+.s-toggle.checked .s-toggle-track {
+  background: var(--t-primary);
+}
+.s-toggle-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--t-shadow-sm);
+}
+.s-toggle.checked .s-toggle-thumb {
+  transform: translateX(20px);
+}
+.s-toggle-label { font-size: 14px; color: var(--t-text); }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-toggle-brutalist .s-toggle-track {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-text);
+  background: var(--t-surface);
+  box-shadow: 2px 2px 0 var(--t-text);
+}
+.s-toggle-brutalist .s-toggle-thumb { border-radius: 0; background: var(--t-text); }
+.s-toggle-brutalist.checked .s-toggle-track { background: var(--t-primary); border-color: var(--t-text); }
+
+/* Pixel */
+.s-toggle-pixel .s-toggle-track {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  background: var(--t-surface);
+}
+.s-toggle-pixel .s-toggle-thumb { border-radius: 0; }
+
+/* Neon */
+.s-toggle-neon .s-toggle-track {
+  box-shadow: 0 0 4px var(--t-primary);
+}
+.s-toggle-neon.checked .s-toggle-track { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-toggle-metro .s-toggle-track {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  background: var(--t-surface);
+}
+.s-toggle-metro .s-toggle-thumb { border-radius: 0; }
+.s-toggle-metro.checked .s-toggle-track { background: var(--t-primary); }
+
+/* Bootstrap */
+.s-toggle-bootstrap .s-toggle-track {
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-toggle-bootstrap.checked .s-toggle-track { box-shadow: 0 0 0 3px var(--t-shadow); }
+
+/* Cartoon */
+.s-toggle-cartoon .s-toggle-track {
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--t-primary);
+  background: var(--t-surface);
+}
+.s-toggle-cartoon .s-toggle-thumb { border: 2px solid var(--t-text); }
+
+/* Illustration */
+.s-toggle-illustration .s-toggle-track {
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 2px 2px 0 var(--t-border);
+  background: var(--t-surface);
+}
+
+/* Carbon */
+.s-toggle-carbon .s-toggle-track {
+  border-radius: 12px;
+  border: var(--t-border-width) solid var(--t-border);
+  border-bottom-width: 2px;
+  background: var(--t-surface);
+}
+.s-toggle-carbon.checked .s-toggle-track { border-color: var(--t-primary); background: var(--t-primary); }
+
+/* Liquid Glass */
+.s-toggle-liquid-glass .s-toggle-track {
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--t-shadow-sm), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.s-toggle-liquid-glass.checked .s-toggle-track { background: color-mix(in srgb, var(--t-primary) 60%, transparent); }

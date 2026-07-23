@@ -1,0 +1,6 @@
+/* ===== ROW ===== */
+/* Flex layout primitive — horizontal stack. Dynamic gap/align/justify/fill are
+ * set via inline style by the component; this file holds flex best-practices
+ * that keep children from overflowing. */
+.s-row { box-sizing: border-box; }
+.s-row > * { min-width: 0; box-sizing: border-box; }

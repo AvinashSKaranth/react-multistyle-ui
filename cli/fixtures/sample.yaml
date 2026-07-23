@@ -1,0 +1,254 @@
+- Card:
+    - Row:
+        - Input:
+            label: Username
+            placeholder: Enter name
+
+- Card:
+    - Row:
+        - Input:
+            label: Email
+            placeholder: Enter email
+
+- Card:
+    - Row:
+        - Button:
+            label: Submit
+
+- Card:
+    - Row:
+        - Select:
+            placeholder: Fruit
+            options:
+              - value: apple
+                label: Apple
+              - value: banana
+                label: Banana
+              - value: cherry
+                label: Cherry
+
+- Card:
+    - Row:
+        - MultiSelect:
+            placeholder: Hobbies
+            options:
+              - value: reading
+                label: Reading
+              - value: traveling
+                label: Traveling
+              - value: cooking
+                label: Cooking
+
+- Card:
+    - Row:
+        - Textarea:
+            label: Bio
+            placeholder: Tell us about yourself
+            rows: 4
+
+- Card:
+    - Row:
+        - Checkbox:
+            label: Subscribe to newsletter
+
+- Card:
+    - Row:
+        - Toggle:
+            label: Enable notifications
+
+- Card:
+    - Row:
+        - Radio:
+            label: Plan A
+            value: plan-a
+
+- Card:
+    - Row:
+        - Radio:
+            label: Plan B
+            value: plan-b
+
+- Card:
+    - Row:
+        - Slider:
+            label: Volume
+            min: 0
+            max: 100
+
+- Card:
+    - Row:
+        - DatePicker:
+            label: Start date
+
+- Card:
+    - Row:
+        - FileUpload:
+            label: Upload resume
+
+- Card:
+    - Row:
+        - ButtonGroup:
+            items:
+              - value: grid
+                label: Grid
+              - value: list
+                label: List
+
+- Card:
+    - Row:
+        - Rating:
+            max: 5
+
+- Card:
+    - Row:
+        - Chip:
+            children: Tag
+
+- Card:
+    - Row:
+        - IconButton:
+            icon: search
+            ariaLabel: Search
+
+- Card:
+    - Row:
+        - Tabs:
+            tabs:
+              - id: home
+                label: Home
+              - id: profile
+                label: Profile
+
+- Card:
+    - Row:
+        - Breadcrumb:
+            items:
+              - label: Home
+                href: /
+              - label: Products
+              - label: Details
+
+- Card:
+    - Row:
+        - Stepper:
+            steps:
+              - label: Cart
+              - label: Shipping
+              - label: Payment
+            current: 1
+
+- Card:
+    - Row:
+        - Pagination:
+            total: 100
+            perPage: 10
+
+- Card:
+    - Row:
+        - Accordion:
+            items:
+              - id: faq-1
+                title: What is this?
+                content: A multi-style UI library.
+              - id: faq-2
+                title: How do I use it?
+                content: Import components and pick a style.
+
+- Card:
+    - Row:
+        - DropdownMenu:
+            items:
+              - label: Edit
+              - label: Delete
+              - divider: true
+              - label: Share
+
+- Card:
+    - Row:
+        - Tooltip:
+            text: Hover tip
+            children: Info
+
+- Card:
+    - Row:
+        - Popover:
+            children: Trigger
+            content: Popover body
+
+- Card:
+    - Row:
+        - Alert:
+            preset: success
+            title: Done
+            children: Your changes were saved.
+
+- Card:
+    - Row:
+        - ProgressBar:
+            value: 60
+
+- Card:
+    - Row:
+        - Spinner:
+
+- Card:
+    - Row:
+        - Skeleton:
+
+- Card:
+    - Row:
+        - Divider:
+
+- Card:
+    - Row:
+        - Avatar:
+            src: ""
+            fallback: JD
+
+- Card:
+    - Row:
+        - Grid:
+            columns: 2
+            children: Grid cell
+
+- Card:
+    - Row:
+        - Column:
+            children: Column cell
+
+- Card:
+    - Row:
+        - Table:
+
+- Card:
+    - Row:
+        - BarChart:
+            title: Quarterly Revenue
+            xAxisLabel: Quarter
+            yAxisLabel: Revenue
+            downloadable: true
+
+- Card:
+    - Row:
+        - LineChart:
+            title: Trend
+
+- Card:
+    - Row:
+        - PieChart:
+            title: Share
+
+- Card:
+    - Row:
+        - DoughnutChart:
+            title: Distribution
+
+- Card:
+    - Row:
+        - RadarChart:
+            title: Radar
+
+- Card:
+    - Row:
+        - PolarAreaChart:
+            title: Polar

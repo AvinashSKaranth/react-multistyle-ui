@@ -1,0 +1,158 @@
+/* ===== BASE ===== */
+.s-cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  padding-top: 12vh;
+  z-index: 2000;
+}
+
+.s-cmdk {
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  box-shadow: var(--t-shadow-xl);
+  width: 100%;
+  max-width: 580px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.s-cmdk-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--t-border);
+}
+
+.s-cmdk-search-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--t-text-muted);
+}
+
+.s-cmdk-input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--t-text);
+  font-family: inherit;
+}
+.s-cmdk-input::placeholder { color: var(--t-text-muted); }
+
+.s-cmdk-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.s-cmdk-group {
+  padding: 4px 0;
+}
+
+.s-cmdk-group-label {
+  padding: 6px 12px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--t-text-muted);
+}
+
+.s-cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--t-text);
+  width: 100%;
+  text-align: left;
+  border-radius: 6px;
+  transition: all 0.1s;
+}
+.s-cmdk-item:hover,
+.s-cmdk-item.active {
+  background: color-mix(in srgb, var(--t-primary) 10%, var(--t-surface));
+}
+.s-cmdk-item-icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+.s-cmdk-item-label { flex: 1; }
+.s-cmdk-item-shortcut {
+  font-size: 11px;
+  color: var(--t-text-muted);
+  padding: 2px 6px;
+  border: 1px solid var(--t-border);
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.s-cmdk-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--t-text-muted);
+  font-size: 14px;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-cmdk-brutalist { border-radius: 0; border: 3px solid var(--t-text); box-shadow: 6px 6px 0 var(--t-text); }
+.s-cmdk-brutalist .s-cmdk-item { border-radius: 0; font-family: 'Courier New', monospace; font-weight: 700; }
+.s-cmdk-brutalist .s-cmdk-input-wrapper { border-color: var(--t-text); }
+
+/* Pixel */
+.s-cmdk-pixel { border-radius: 0; border: 3px solid var(--t-primary); }
+.s-cmdk-pixel .s-cmdk-item { border-radius: 0; font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-cmdk-neon { border-color: var(--t-primary); box-shadow: 0 0 20px var(--t-primary), 0 0 60px var(--t-shadow); }
+.s-cmdk-neon .s-cmdk-input { color: var(--t-primary); }
+
+/* Metro */
+.s-cmdk-metro { border-radius: 0; border: 2px solid var(--t-primary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+.s-cmdk-metro .s-cmdk-item { border-radius: 0; font-weight: 600; }
+
+/* Bootstrap */
+.s-cmdk-bootstrap { border-radius: 6px; border: 1px solid var(--t-border); }
+
+/* Cartoon */
+.s-cmdk-cartoon { border-radius: 20px; border: 3px solid var(--t-text); box-shadow: 6px 6px 0 var(--t-primary); }
+.s-cmdk-cartoon .s-cmdk-item { border-radius: 12px; font-weight: 700; }
+
+/* Illustration */
+.s-cmdk-illustration { border-radius: 8px; border: 2px solid var(--t-text); box-shadow: 4px 4px 0 var(--t-border); }
+.s-cmdk-illustration .s-cmdk-item { border-radius: 6px; font-style: italic; }
+
+/* Carbon */
+.s-cmdk-carbon { border-radius: 0; border: 1px solid var(--t-border); font-family: 'IBM Plex Sans', sans-serif; }
+.s-cmdk-carbon .s-cmdk-input-wrapper { border-top: 3px solid var(--t-primary); }
+.s-cmdk-carbon .s-cmdk-item { border-radius: 0; border-left: 2px solid transparent; }
+.s-cmdk-carbon .s-cmdk-item:hover { border-left-color: var(--t-primary); }
+
+/* Liquid Glass */
+.s-cmdk-liquid-glass { border-radius: 20px; backdrop-filter: blur(32px) saturate(1.8); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.15); }
+.s-cmdk-liquid-glass .s-cmdk-input-wrapper { border-color: rgba(255,255,255,0.1); }
+.s-cmdk-liquid-glass .s-cmdk-item { border-radius: 12px; }
+.s-cmdk-liquid-glass .s-cmdk-item:hover { background: rgba(255,255,255,0.08); }
+/* Material3 */
+.s-cmdk-material3 { border-radius: 28px; }
+
+/* Fluent */
+.s-cmdk-fluent { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+/* Borderless overlays — declared last to win source-order over base border. */
+.s-cmdk-material,
+.s-cmdk-material3,
+.s-cmdk-fluent { border: none; }

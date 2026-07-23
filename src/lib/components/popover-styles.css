@@ -1,0 +1,118 @@
+/* ===== BASE ===== */
+.s-popover-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+.s-popover-trigger { cursor: pointer; }
+
+.s-popover {
+  position: absolute;
+  z-index: 500;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  box-shadow: var(--t-shadow-lg);
+  min-width: 160px;
+  max-width: 320px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+/* Positions */
+.popover-top {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.popover-bottom {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.popover-left {
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.popover-right {
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Arrow */
+.s-popover-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--t-surface);
+  border: var(--t-border-width) solid var(--t-border);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.popover-top .s-popover-arrow {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-top: none;
+  border-left: none;
+}
+.popover-bottom .s-popover-arrow {
+  top: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-bottom: none;
+  border-right: none;
+}
+.popover-left .s-popover-arrow {
+  right: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-bottom: none;
+  border-left: none;
+}
+.popover-right .s-popover-arrow {
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-top: none;
+  border-right: none;
+}
+
+.s-popover-content { line-height: 1.5; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-popover-brutalist .s-popover { border-radius: 0; border: 3px solid var(--t-text); box-shadow: 4px 4px 0 var(--t-text); font-family: 'Courier New', monospace; }
+
+/* Pixel */
+.s-popover-pixel .s-popover { border-radius: 0; border: 3px solid var(--t-primary); font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-popover-neon .s-popover { border-color: var(--t-primary); box-shadow: 0 0 10px var(--t-primary), 0 0 30px var(--t-shadow); }
+
+/* Metro */
+.s-popover-metro .s-popover { border-radius: 0; border: 2px solid var(--t-primary); box-shadow: none; }
+
+/* Bootstrap */
+.s-popover-bootstrap .s-popover { border-radius: 6px; border: 1px solid var(--t-border); box-shadow: var(--t-shadow-md); }
+
+/* Cartoon */
+.s-popover-cartoon .s-popover { border-radius: 16px; border: 3px solid var(--t-text); box-shadow: 5px 5px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-popover-illustration .s-popover { border-radius: 8px; border: 2px solid var(--t-text); box-shadow: 3px 3px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-popover-carbon .s-popover { border-radius: 0; border: 1px solid var(--t-border); font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Liquid Glass */
+.s-popover-liquid-glass .s-popover { border-radius: 16px; backdrop-filter: blur(24px) saturate(1.6); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); box-shadow: var(--t-shadow-lg), inset 0 1px 0 rgba(255,255,255,0.2); }
+.s-popover-liquid-glass .s-popover-arrow { background: rgba(255,255,255,0.08); backdrop-filter: blur(24px); }
+/* Material3 */
+.s-popover-material3 .s-popover { border-radius: 16px; }
+
+/* Fluent */
+.s-popover-fluent .s-popover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }

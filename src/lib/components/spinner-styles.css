@@ -1,0 +1,49 @@
+/* ===== BASE ===== */
+/* Theme-controlled: spinner colors. Style-controlled: spinner shape. */
+.s-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-spinner-circle {
+  border-radius: 50%;
+  border: 3px solid var(--t-border);
+  border-top-color: var(--t-primary);
+  animation: spinnerRotate 0.8s linear infinite;
+}
+.s-spinner.spinner-sm .s-spinner-circle { width: 20px; height: 20px; border-width: 2px; }
+.s-spinner.spinner-md .s-spinner-circle { width: 32px; height: 32px; border-width: 3px; }
+.s-spinner.spinner-lg .s-spinner-circle { width: 48px; height: 48px; border-width: 4px; }
+
+@keyframes spinnerRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-spinner-brutalist .s-spinner-circle { border-radius: 0; border: var(--t-border-width) solid var(--t-text); border-top-color: var(--t-primary); }
+
+/* Pixel */
+.s-spinner-pixel .s-spinner-circle { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); border-top-color: var(--t-secondary); animation-timing-function: steps(8); }
+
+/* Neon */
+.s-spinner-neon .s-spinner-circle { border-color: transparent; border-top-color: var(--t-primary); box-shadow: 0 0 8px var(--t-primary); }
+
+/* Metro */
+.s-spinner-metro .s-spinner-circle { border-radius: 50%; border: 3px solid transparent; border-top-color: var(--t-primary); }
+
+/* Bootstrap */
+.s-spinner-bootstrap .s-spinner-circle { border-color: color-mix(in srgb, var(--t-primary) 20%, transparent); border-top-color: var(--t-primary); }
+
+/* Cartoon */
+.s-spinner-cartoon .s-spinner-circle { border: 4px solid var(--t-text); border-top-color: var(--t-primary); box-shadow: 3px 3px 0 var(--t-primary); }
+
+/* Illustration */
+.s-spinner-illustration .s-spinner-circle { border: var(--t-border-width) solid var(--t-text); border-top-color: var(--t-primary); }
+
+/* Carbon */
+.s-spinner-carbon .s-spinner-circle { border: 2px solid var(--t-border); border-top-color: var(--t-primary); }
+
+/* Liquid Glass */
+.s-spinner-liquid-glass .s-spinner-circle { border-color: rgba(255,255,255,0.15); border-top-color: var(--t-primary); }

@@ -1,0 +1,113 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width. Style-controlled: shape. */
+.s-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.s-radio.disabled { opacity: 0.45; pointer-events: none; }
+.s-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+.s-radio-circle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: 50%;
+  background: var(--t-surface);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+.s-radio-circle:hover { border-color: var(--t-primary); }
+.s-radio.selected .s-radio-circle {
+  border-color: var(--t-primary);
+}
+.s-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--t-primary);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.15s ease;
+}
+.s-radio.selected .s-radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+.s-radio-label { font-size: 14px; color: var(--t-text); }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-radio-brutalist .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--t-text);
+}
+.s-radio-brutalist .s-radio-dot { border-radius: 0; }
+
+/* Pixel */
+.s-radio-pixel .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: 0;
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.25);
+}
+.s-radio-pixel .s-radio-dot { border-radius: 0; }
+
+/* Neon */
+.s-radio-neon .s-radio-circle {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 4px var(--t-primary);
+}
+.s-radio-neon.selected .s-radio-circle { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-radio-metro .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-primary);
+  box-shadow: none;
+}
+
+/* Bootstrap */
+.s-radio-bootstrap .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-radio-bootstrap.selected .s-radio-circle { box-shadow: 0 0 0 3px var(--t-shadow); }
+
+/* Cartoon */
+.s-radio-cartoon .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-primary);
+}
+
+/* Illustration */
+.s-radio-illustration .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 2px 2px 0 var(--t-border);
+}
+
+/* Carbon */
+.s-radio-carbon .s-radio-circle {
+  border: var(--t-border-width) solid var(--t-border);
+  border-bottom-width: 2px;
+}
+.s-radio-carbon.selected .s-radio-circle { border-color: var(--t-primary); }
+
+/* Liquid Glass */
+.s-radio-liquid-glass .s-radio-circle {
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--t-shadow-sm), inset 0 1px 0 rgba(255,255,255,0.3);
+}

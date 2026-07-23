@@ -1,0 +1,267 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow, radius. Style-controlled: shape. */
+.s-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --btn-color: var(--btn-color);
+  background: var(--btn-color);
+  color: var(--t-text-on-primary);
+  border: var(--t-border-width) solid transparent;
+  border-radius: var(--t-btn-radius);
+  box-shadow: var(--t-shadow-sm);
+}
+
+/* ===== PRESETS (semantic color, theme-aware via --t-* tokens) ===== */
+.s-button.btn-primary { --btn-color: var(--t-primary); }
+.s-button.btn-secondary { --btn-color: var(--t-secondary); }
+.s-button.btn-info { --btn-color: var(--t-info); }
+.s-button.btn-success { --btn-color: var(--t-success); }
+.s-button.btn-warning { --btn-color: var(--t-warning); }
+.s-button.btn-error { --btn-color: var(--t-error); }
+.s-button:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.s-button-icon { display: inline-flex; font-size: 1.15em; line-height: 1; }
+
+/* ===== SIZES ===== */
+.s-button.btn-sm { padding: 6px 14px; font-size: 13px; }
+.s-button.btn-md { padding: 10px 20px; font-size: 14px; }
+.s-button.btn-lg { padding: 14px 28px; font-size: 16px; }
+
+/* ===== VARIANTS ===== */
+.s-button.btn-filled {
+  background: var(--btn-color);
+  color: var(--t-text-on-primary);
+  border-color: transparent;
+}
+.s-button.btn-filled:hover {
+  background: color-mix(in srgb, var(--btn-color) 85%, #000);
+  box-shadow: var(--t-shadow-colored-md);
+}
+.s-button.btn-filled:active {
+  transform: scale(0.97);
+  box-shadow: var(--t-shadow-xs);
+}
+
+.s-button.btn-outlined {
+  background: transparent;
+  color: var(--btn-color);
+  border-color: var(--btn-color);
+  box-shadow: none;
+}
+.s-button.btn-outlined:hover {
+  background: color-mix(in srgb, var(--btn-color) 8%, transparent);
+}
+.s-button.btn-outlined:active {
+  background: color-mix(in srgb, var(--btn-color) 14%, transparent);
+  transform: scale(0.97);
+}
+
+.s-button.btn-text {
+  background: transparent;
+  color: var(--btn-color);
+  border-color: transparent;
+  box-shadow: none;
+}
+.s-button.btn-text:hover {
+  background: color-mix(in srgb, var(--btn-color) 8%, transparent);
+}
+.s-button.btn-text:active {
+  background: color-mix(in srgb, var(--btn-color) 14%, transparent);
+}
+
+.s-button.btn-tonal {
+  background: color-mix(in srgb, var(--btn-color) 15%, var(--t-surface));
+  color: var(--btn-color);
+  border-color: transparent;
+  box-shadow: none;
+}
+.s-button.btn-tonal:hover {
+  background: color-mix(in srgb, var(--btn-color) 22%, var(--t-surface));
+}
+.s-button.btn-tonal:active {
+  background: color-mix(in srgb, var(--btn-color) 28%, var(--t-surface));
+  transform: scale(0.97);
+}
+
+/* ===== RIPPLE (material styles) ===== */
+.s-button-material::after,
+.s-button-material3::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.s-button-material:active::after,
+.s-button-material3:active::after {
+  opacity: 1;
+  transform: scale(2.5);
+  transition: opacity 0s, transform 0s;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Material 3 — pill shape (style-controlled, ignores theme radius) */
+.s-button-material3 { border-radius: 20px; }
+
+/* Fluent 2 — 4px radius, smaller padding, subtle shadow */
+.s-button-fluent { border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+.s-button-fluent:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+.s-button-fluent.btn-sm { padding: 4px 12px; font-size: 13px; }
+.s-button-fluent.btn-md { padding: 6px 16px; font-size: 14px; }
+.s-button-fluent.btn-lg { padding: 8px 20px; font-size: 16px; }
+
+/* Brutalist */
+.s-button-brutalist {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-text);
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+.s-button-brutalist:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--t-text);
+}
+.s-button-brutalist:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--t-text);
+}
+
+/* Pixel */
+.s-button-pixel {
+  font-family: 'Courier New', monospace;
+  border-radius: 0;
+  border: var(--t-border-width) solid;
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.3), inset 3px 3px 0 rgba(255,255,255,0.2);
+  image-rendering: pixelated;
+  transition: all 0.1s steps(3);
+}
+
+/* Neon */
+.s-button-neon {
+  box-shadow: 0 0 5px var(--btn-color), 0 0 15px var(--t-shadow);
+}
+.s-button-neon:hover {
+  box-shadow: 0 0 10px var(--btn-color), 0 0 30px var(--t-shadow);
+}
+.s-button-neon.btn-filled {
+  background: var(--t-surface);
+  color: var(--btn-color);
+  border-color: var(--btn-color);
+}
+
+/* Metro */
+.s-button-metro {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--btn-color);
+  font-weight: 600;
+  box-shadow: none;
+}
+.s-button-metro.btn-filled {
+  background: var(--btn-color);
+  color: var(--t-text-on-primary);
+}
+.s-button-metro.btn-outlined {
+  background: var(--t-surface);
+  color: var(--btn-color);
+}
+.s-button-metro:hover {
+  opacity: 0.85;
+}
+
+/* Bootstrap */
+.s-button-bootstrap {
+  border-radius: 6px;
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-button-bootstrap.btn-filled {
+  border-color: var(--btn-color);
+}
+.s-button-bootstrap:hover {
+  box-shadow: 0 0 0 3px var(--t-shadow);
+}
+.s-button-bootstrap:focus-visible {
+  box-shadow: 0 0 0 3px var(--t-shadow);
+  border-color: var(--btn-color);
+}
+
+/* Cartoon */
+.s-button-cartoon {
+  border-radius: 16px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 4px 4px 0 var(--btn-color);
+  font-weight: 700;
+}
+.s-button-cartoon:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--btn-color);
+}
+.s-button-cartoon:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--btn-color);
+}
+
+/* Illustration */
+.s-button-illustration {
+  border-radius: 8px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-border);
+  font-style: italic;
+}
+.s-button-illustration:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--t-border);
+}
+
+/* Carbon */
+.s-button-carbon {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-border);
+  border-bottom-width: 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  box-shadow: none;
+}
+.s-button-carbon:hover {
+  border-bottom-color: var(--btn-color);
+}
+.s-button-carbon:focus-visible {
+  border-bottom-color: var(--btn-color);
+}
+
+/* Liquid Glass */
+.s-button-liquid-glass {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.s-button-liquid-glass.btn-filled {
+  background: color-mix(in srgb, var(--btn-color) 60%, transparent);
+  border-color: rgba(255,255,255,0.2);
+}
+.s-button-liquid-glass.btn-outlined {
+  background: rgba(255,255,255,0.06);
+  border-color: color-mix(in srgb, var(--btn-color) 50%, transparent);
+  color: var(--btn-color);
+}
+.s-button-liquid-glass:hover {
+  background: rgba(255,255,255,0.18);
+  box-shadow: var(--t-shadow-lg), inset 0 1px 0 rgba(255,255,255,0.4);
+}

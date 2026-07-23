@@ -1,0 +1,102 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, shadow. Style-controlled: track height, shape. */
+.s-progressbar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--t-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--t-primary);
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress-fill.animated {
+  background: linear-gradient(90deg, var(--t-primary) 0%, var(--t-secondary) 50%, var(--t-primary) 100%);
+  background-size: 200% 100%;
+  animation: progressbarMove 1.5s linear infinite;
+}
+@keyframes progressbarMove {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+/* Value popover — shown on hover/focus/click when `label` is enabled */
+.progress-popover {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--t-text);
+  color: var(--t-surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+.progress-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--t-text);
+}
+
+/* Indeterminate — value < 0: a chunk slides across the track */
+.progress-fill.indeterminate {
+  width: 40%;
+  animation: progressbarIndeterminate 1.3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes progressbarIndeterminate {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(250%); }
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-progressbar-brutalist .progress-track { border-radius: 0; border: var(--t-border-width) solid var(--t-text); height: 12px; }
+.s-progressbar-brutalist .progress-fill { border-radius: 0; }
+
+/* Pixel */
+.s-progressbar-pixel .progress-track { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); height: 12px; }
+.s-progressbar-pixel .progress-fill { border-radius: 0; }
+
+/* Neon */
+.s-progressbar-neon .progress-track { box-shadow: 0 0 4px var(--t-primary); }
+.s-progressbar-neon .progress-fill { box-shadow: 0 0 8px var(--t-primary); }
+
+/* Metro */
+.s-progressbar-metro .progress-track { border-radius: 0; height: 6px; }
+.s-progressbar-metro .progress-fill { border-radius: 0; }
+
+/* Bootstrap */
+.s-progressbar-bootstrap .progress-track { border-radius: 4px; height: 8px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
+
+/* Cartoon */
+.s-progressbar-cartoon .progress-track { border-radius: 8px; border: var(--t-border-width) solid var(--t-text); height: 14px; box-shadow: 3px 3px 0 var(--t-primary); }
+.s-progressbar-cartoon .progress-fill { border-radius: 6px; }
+
+/* Illustration */
+.s-progressbar-illustration .progress-track { border-radius: 4px; border: var(--t-border-width) solid var(--t-text); height: 10px; }
+
+/* Carbon */
+.s-progressbar-carbon .progress-track { border-radius: 0; height: 4px; }
+.s-progressbar-carbon .progress-fill { border-radius: 0; }
+
+/* Liquid Glass */
+.s-progressbar-liquid-glass .progress-track { border-radius: 4px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+.s-progressbar-liquid-glass .progress-fill { background: color-mix(in srgb, var(--t-primary) 70%, transparent); }

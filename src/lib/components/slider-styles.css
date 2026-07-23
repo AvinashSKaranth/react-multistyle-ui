@@ -1,0 +1,81 @@
+/* ===== BASE ===== */
+/* Theme-controlled: track/fill colors, thumb colors, shadow. Style-controlled: track height, thumb shape. */
+.s-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.s-slider-wrapper.disabled { opacity: 0.45; pointer-events: none; }
+.s-slider-label { font-size: 13px; color: var(--t-text); font-weight: 500; }
+.s-slider-value { font-size: 12px; color: var(--t-primary); font-weight: 600; }
+.s-slider-track-wrapper {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.s-slider-track-wrapper input[type="range"] {
+  width: 100%;
+  height: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--t-border);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--t-primary);
+  border: 2px solid #fff;
+  box-shadow: var(--t-shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: var(--t-shadow-colored-md);
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-slider-brutalist .s-slider-track-wrapper input[type="range"] { border-radius: 0; height: 8px; border: var(--t-border-width) solid var(--t-text); }
+.s-slider-brutalist .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { border-radius: 0; border: var(--t-border-width) solid var(--t-text); }
+
+/* Pixel */
+.s-slider-pixel .s-slider-track-wrapper input[type="range"] { border-radius: 0; height: 8px; border: var(--t-border-width) solid var(--t-primary); }
+.s-slider-pixel .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); }
+
+/* Neon */
+.s-slider-neon .s-slider-track-wrapper input[type="range"] { box-shadow: 0 0 4px var(--t-primary); }
+.s-slider-neon .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow); }
+
+/* Metro */
+.s-slider-metro .s-slider-track-wrapper input[type="range"] { border-radius: 0; height: 4px; }
+.s-slider-metro .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { border-radius: 0; width: 16px; height: 16px; }
+
+/* Bootstrap */
+.s-slider-bootstrap .s-slider-track-wrapper input[type="range"] { border-radius: 3px; }
+.s-slider-bootstrap .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { box-shadow: var(--t-shadow-xs); }
+
+/* Cartoon */
+.s-slider-cartoon .s-slider-track-wrapper input[type="range"] { height: 10px; border-radius: 5px; border: var(--t-border-width) solid var(--t-text); }
+.s-slider-cartoon .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { width: 24px; height: 24px; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); }
+
+/* Illustration */
+.s-slider-illustration .s-slider-track-wrapper input[type="range"] { height: 8px; border: var(--t-border-width) solid var(--t-text); border-radius: 4px; }
+.s-slider-illustration .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); }
+
+/* Carbon */
+.s-slider-carbon .s-slider-track-wrapper input[type="range"] { border-radius: 0; height: 4px; }
+.s-slider-carbon .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { border-radius: 50%; width: 14px; height: 14px; border: var(--t-border-width) solid var(--t-border); }
+
+/* Liquid Glass */
+.s-slider-liquid-glass .s-slider-track-wrapper input[type="range"] { background: rgba(255,255,255,0.15); border-radius: 3px; }
+.s-slider-liquid-glass .s-slider-track-wrapper input[type="range"]::-webkit-slider-thumb { background: rgba(255,255,255,0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); }

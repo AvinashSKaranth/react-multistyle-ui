@@ -1,0 +1,505 @@
+/* ===== BASE ===== */
+.s-texteditor-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.s-texteditor-label {
+  font-size: 14px;
+  color: var(--t-text-muted);
+}
+
+.s-texteditor-root {
+  display: flex;
+  flex-direction: column;
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius);
+  background: var(--t-surface);
+  color: var(--t-text);
+  box-shadow: var(--t-shadow-xs);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.s-texteditor-root.focused {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 0 2px var(--t-shadow);
+}
+
+.s-texteditor-root.readonly {
+  opacity: 0.7;
+}
+
+/* ===== TOOLBAR ===== */
+.s-texteditor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  background: var(--t-card-bg);
+  border-bottom: var(--t-border-width) solid var(--t-border);
+  min-height: 40px;
+}
+
+.s-texteditor-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 6px;
+  border-right: 1px solid var(--t-border);
+}
+
+.s-texteditor-toolbar-group:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.s-texteditor-toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: var(--t-border);
+  margin: 0 4px;
+}
+
+.s-texteditor-btn,
+.s-texteditor-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--t-btn-radius);
+  background: transparent;
+  color: var(--t-text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.s-texteditor-btn:hover {
+  background: color-mix(in srgb, var(--t-text) 10%, transparent);
+}
+
+.s-texteditor-btn.active {
+  background: var(--t-primary);
+  color: var(--t-text-on-primary);
+  border-color: var(--t-primary);
+}
+
+.s-texteditor-btn:disabled,
+.s-texteditor-root.readonly .s-texteditor-btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.s-texteditor-select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.s-texteditor-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border-color: var(--t-border);
+  font-weight: 400;
+  padding-right: 22px;
+  font-size: 12px;
+  min-width: auto;
+}
+
+.s-texteditor-select:hover {
+  background: var(--t-card-bg);
+}
+
+.s-texteditor-color-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--t-btn-radius);
+  cursor: pointer;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--t-text) 8%, transparent);
+}
+
+.s-texteditor-color-btn::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: conic-gradient(var(--t-primary), var(--t-secondary), var(--t-info), var(--t-success), var(--t-warning), var(--t-error), var(--t-primary));
+  border: 1px solid var(--t-border);
+}
+
+.s-texteditor-color-btn--icon::before {
+  display: none;
+}
+
+.s-texteditor-color-icon {
+  font-size: 18px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.s-texteditor-color-btn input[type="color"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+}
+
+/* ===== EDITOR BODY ===== */
+.s-texteditor-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.s-texteditor-content {
+  box-sizing: border-box;
+  min-height: calc(var(--texteditor-rows, 8) * 1.5em);
+  max-height: 60vh;
+  padding: 12px;
+  outline: none;
+  overflow-y: auto;
+  background: var(--t-surface);
+  color: var(--t-text);
+  line-height: 1.6;
+}
+
+.s-texteditor-code {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--texteditor-rows, 8) * 1.5em);
+  max-height: 60vh;
+  padding: 12px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  background: var(--t-surface);
+  color: var(--t-text);
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.s-texteditor-root.code-view .s-texteditor-toolbar.readonly .s-texteditor-btn,
+.s-texteditor-root.code-view .s-texteditor-toolbar.readonly .s-texteditor-select,
+.s-texteditor-root.code-view .s-texteditor-toolbar.readonly .s-texteditor-color-btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.s-texteditor-root.code-view .s-texteditor-btn-toggleCodeView {
+  opacity: 1 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  background: var(--t-primary);
+  color: var(--t-text-on-primary);
+}
+
+.s-texteditor-root.code-view .s-texteditor-btn-toggleCodeView:hover {
+  background: var(--t-primary);
+}
+
+.s-texteditor-root.empty .s-texteditor-content::before {
+  content: attr(data-placeholder);
+  color: var(--t-text-hint);
+  pointer-events: none;
+  display: block;
+}
+
+.s-texteditor-content p { margin: 0 0 0.75em; }
+.s-texteditor-content p:last-child { margin-bottom: 0; }
+
+.s-texteditor-content h1,
+.s-texteditor-content h2,
+.s-texteditor-content h3,
+.s-texteditor-content h4,
+.s-texteditor-content h5,
+.s-texteditor-content h6 {
+  margin: 0.5em 0;
+  line-height: 1.25;
+  color: var(--t-text);
+}
+
+.s-texteditor-content h1 { font-size: 2em; }
+.s-texteditor-content h2 { font-size: 1.75em; }
+.s-texteditor-content h3 { font-size: 1.5em; }
+.s-texteditor-content h4 { font-size: 1.25em; }
+.s-texteditor-content h5 { font-size: 1.1em; }
+.s-texteditor-content h6 { font-size: 1em; }
+
+.s-texteditor-content blockquote {
+  margin: 0.75em 0;
+  padding-left: 1em;
+  border-left: 3px solid var(--t-primary);
+  color: var(--t-text-muted);
+}
+
+.s-texteditor-content pre {
+  margin: 0.75em 0;
+  padding: 0.75em;
+  background: var(--t-card-surface);
+  border: 1px solid var(--t-border);
+  border-radius: calc(var(--t-card-radius) - 4px);
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+}
+
+.s-texteditor-content ul,
+.s-texteditor-content ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+  list-style-position: outside;
+}
+
+.s-texteditor-content ul { list-style-type: disc; }
+.s-texteditor-content ol { list-style-type: decimal; }
+
+.s-texteditor-content ul ul { list-style-type: circle; }
+.s-texteditor-content ul ul ul { list-style-type: square; }
+
+.s-texteditor-content li {
+  margin: 0.25em 0;
+  display: list-item;
+}
+
+.s-texteditor-content hr {
+  border: none;
+  border-top: 1px solid var(--t-border);
+  margin: 1em 0;
+}
+
+.s-texteditor-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--t-card-radius) - 4px);
+}
+
+.s-texteditor-content a {
+  color: var(--t-primary);
+  text-decoration: underline;
+}
+
+.s-texteditor-content figure {
+  margin: 0.75em 0;
+}
+
+.s-texteditor-content figcaption {
+  font-size: 0.85em;
+  color: var(--t-text-muted);
+  text-align: center;
+  margin-top: 0.25em;
+}
+
+.s-texteditor-content iframe {
+  max-width: 100%;
+  border: none;
+}
+
+.s-texteditor-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+}
+
+.s-texteditor-content td,
+.s-texteditor-content th {
+  border: 1px solid var(--t-border);
+  padding: 6px 8px;
+  min-width: 40px;
+}
+
+/* ===== STATUS BAR ===== */
+.s-texteditor-statusbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--t-text-muted);
+  background: var(--t-card-bg);
+  border-top: var(--t-border-width) solid var(--t-border);
+}
+
+.s-texteditor-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 280px;
+}
+
+.s-texteditor-dialog-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.s-texteditor-dialog-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Material 3 — pill radius */
+.s-texteditor-material3 .s-texteditor-root {
+  border-radius: 20px;
+}
+.s-texteditor-material3 .s-texteditor-toolbar {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Fluent — subtle shadow */
+.s-texteditor-fluent .s-texteditor-root {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Brutalist */
+.s-texteditor-brutalist .s-texteditor-root {
+  border: 2px solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--t-text);
+}
+.s-texteditor-brutalist .s-texteditor-toolbar {
+  border-bottom: 2px solid var(--t-text);
+}
+.s-texteditor-brutalist .s-texteditor-btn,
+.s-texteditor-brutalist .s-texteditor-select {
+  border-radius: 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Pixel */
+.s-texteditor-pixel .s-texteditor-root {
+  border: 2px solid var(--t-text);
+  border-radius: 0;
+  font-family: 'Courier New', monospace;
+}
+.s-texteditor-pixel .s-texteditor-btn,
+.s-texteditor-pixel .s-texteditor-select {
+  border-radius: 0;
+  image-rendering: pixelated;
+}
+
+/* Neon */
+.s-texteditor-neon .s-texteditor-root {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 8px var(--t-primary), 0 0 24px var(--t-shadow);
+}
+.s-texteditor-neon .s-texteditor-btn.active {
+  box-shadow: 0 0 8px var(--t-primary);
+}
+
+/* Metro */
+.s-texteditor-metro .s-texteditor-root {
+  border: 2px solid var(--t-primary);
+  border-radius: 0;
+}
+.s-texteditor-metro .s-texteditor-toolbar {
+  background: var(--t-card-surface);
+}
+.s-texteditor-metro .s-texteditor-btn.active {
+  background: var(--t-primary);
+}
+
+/* Bootstrap */
+.s-texteditor-bootstrap .s-texteditor-root {
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Cartoon */
+.s-texteditor-cartoon .s-texteditor-root {
+  border: 2px solid var(--t-text);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0 var(--t-primary);
+}
+
+/* Illustration */
+.s-texteditor-illustration .s-texteditor-root {
+  border: 2px solid var(--t-text);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--t-border);
+}
+
+/* Carbon */
+.s-texteditor-carbon .s-texteditor-root {
+  border: 1px solid var(--t-border);
+  border-top: 3px solid var(--t-primary);
+  border-radius: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+.s-texteditor-carbon .s-texteditor-toolbar {
+  background: var(--t-surface-bg);
+}
+
+/* Liquid Glass */
+.s-texteditor-liquid-glass .s-texteditor-root {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.s-texteditor-liquid-glass .s-texteditor-toolbar,
+.s-texteditor-liquid-glass .s-texteditor-statusbar {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.s-texteditor-liquid-glass .s-texteditor-btn,
+.s-texteditor-liquid-glass .s-texteditor-label {
+  color: rgba(255, 255, 255, 0.92);
+}
+/* Closed native <select>: transparent so it sits on the glass toolbar, with
+   the same white text as the toolbar buttons. */
+.s-texteditor-liquid-glass .s-texteditor-select {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+}
+/* The OS-rendered option popup can't be made glassy and the glass context
+   forces --t-text to white, which would be white-on-white. Use a solid light
+   surface + dark text so the dropdown list is readable in both modes. */
+.s-texteditor-liquid-glass .s-texteditor-select option {
+  background: #ffffff;
+  color: #1e293b;
+}
+.s-texteditor-liquid-glass .s-texteditor-btn.active {
+  background: var(--t-primary);
+  color: white;
+}
+.s-texteditor-liquid-glass .s-texteditor-content {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+}
+.s-texteditor-liquid-glass .s-texteditor-content blockquote {
+  border-left-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.75);
+}

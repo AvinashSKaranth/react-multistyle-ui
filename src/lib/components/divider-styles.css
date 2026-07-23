@@ -1,0 +1,53 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors. Style-controlled: line weight/shape. */
+.s-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+.s-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--t-border);
+  transition: background 0.2s;
+}
+.s-divider-label {
+  font-size: 12px;
+  color: var(--t-text-muted);
+  white-space: nowrap;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-divider-brutalist .s-divider-line { height: var(--t-border-width); background: var(--t-text); }
+.s-divider-brutalist .s-divider-label { font-family: 'Courier New', monospace; font-weight: bold; }
+
+/* Pixel */
+.s-divider-pixel .s-divider-line { height: var(--t-border-width); background: var(--t-primary); }
+
+/* Neon */
+.s-divider-neon .s-divider-line { height: 1px; background: var(--t-primary); box-shadow: 0 0 4px var(--t-primary); }
+
+/* Metro */
+.s-divider-metro .s-divider-line { height: var(--t-border-width); background: var(--t-primary); }
+.s-divider-metro .s-divider-label { font-weight: 600; }
+
+/* Bootstrap */
+.s-divider-bootstrap .s-divider-line { height: 1px; background: var(--t-border); }
+
+/* Cartoon */
+.s-divider-cartoon .s-divider-line { height: var(--t-border-width); background: var(--t-text); border-radius: 2px; }
+.s-divider-cartoon .s-divider-label { font-weight: 700; }
+
+/* Illustration */
+.s-divider-illustration .s-divider-line { height: var(--t-border-width); background: var(--t-text); border-radius: 1px; }
+.s-divider-illustration .s-divider-label { font-style: italic; }
+
+/* Carbon */
+.s-divider-carbon .s-divider-line { height: 1px; background: var(--t-border); }
+.s-divider-carbon .s-divider-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Liquid Glass */
+.s-divider-liquid-glass .s-divider-line { height: 1px; background: rgba(255,255,255,0.2); }

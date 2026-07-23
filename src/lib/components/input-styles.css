@@ -1,0 +1,400 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow, radius. Style-controlled: shape. */
+.s-input-wrapper {
+  display: inline-flex;
+  position: relative;
+  width: 100%;
+}
+.s-input-wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Field box wraps the input + icons so absolute icons center on the input,
+   not on the wrapper+label. Also hosts the glass surface for liquid-glass. */
+.s-input-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.s-input-wrapper input::placeholder {
+    color: color-mix(in srgb, var(--t-text) 50%, transparent);
+}
+.s-input-wrapper.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.s-input-floating-label {
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+  white-space: nowrap;
+  z-index: 2; /* paint above the positioned .s-input-field so it isn't covered by the input bg */
+}
+
+/* ===== STATIC LABEL ABOVE (fluent, carbon, bootstrap, brutalist, pixel, neon,
+   metro, cartoon, illustration, liquid-glass) ===== */
+.s-input-wrapper.above-label {
+  flex-direction: column;
+  align-items: stretch;
+}
+.s-input-label-above {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t-text);
+  padding: 0 2px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+/* ===== ICONS ===== */
+/* Icons are absolutely positioned 12px from the edge. The 1.2em is the icon's
+   own font-size (scales with the input font-size). The 8px is the gap between
+   the icon glyph and the input text — this gives a clean "margin" relationship. */
+.s-input-wrapper {
+  --input-icon-gap: 8px;
+}
+.s-input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--t-text-hint);
+}
+.s-input-icon-start {
+  left: 12px;
+}
+.s-input-icon-end {
+  right: 12px;
+}
+/* Push input text away from the icon: icon-offset(12px) + icon-size(1.2em) + gap(8px) */
+.has-icon-start input {
+  padding-left: calc(12px + 1.2em + var(--input-icon-gap)) !important;
+}
+.has-icon-end input {
+  padding-right: calc(12px + 1.2em + var(--input-icon-gap)) !important;
+}
+/* Also shift floating labels so they don't overlap with the start icon */
+.has-icon-start .s-input-floating-label {
+  left: calc(12px + 1.2em + var(--input-icon-gap)) !important;
+}
+
+/* ===== MATERIAL DESIGN — underline, rounded top, floating label ===== */
+.s-input-material input {
+  padding: 24px 16px 8px;
+  font-size: 16px;
+  background: color-mix(in srgb, var(--t-primary) 4%, var(--t-surface));
+  color: var(--t-text);
+  border: none;
+  border-bottom: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius) var(--t-input-radius) 0 0;
+}
+.s-input-material input:hover {
+  background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface));
+  border-bottom-color: var(--t-text);
+}
+.s-input-material.focused input {
+  border-bottom-color: var(--t-primary);
+  background: color-mix(in srgb, var(--t-primary) 10%, var(--t-surface));
+}
+.s-input-material .s-input-floating-label {
+  left: 16px;
+  top: 16px;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+}
+.s-input-material.floated .s-input-floating-label {
+  transform: translateY(-12px) scale(0.75);
+  color: var(--t-primary);
+}
+.s-input-material:not(.focused).has-value .s-input-floating-label {
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+}
+
+/* ===== MATERIAL 3 — outlined, label on border ===== */
+.s-input-material3 input {
+  padding: 24px 16px 8px;
+  font-size: 16px;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+.s-input-material3 input:hover {
+  border-color: var(--t-text);
+}
+.s-input-material3.focused input {
+  border-color: var(--t-primary);
+  border-width: calc(var(--t-border-width) + 0.5px);
+  padding: calc(24px - 0.5px) calc(16px - 0.5px) calc(8px - 0.5px);
+}
+.s-input-material3 .s-input-floating-label {
+  left: 14px;
+  top: 16px;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+  background: transparent;
+  padding: 0 4px;
+}
+.s-input-material3.floated .s-input-floating-label {
+  transform: translateY(-24px) scale(0.75);
+  color: var(--t-primary);
+  background: var(--t-surface);
+}
+.s-input-material3:not(.focused).has-value .s-input-floating-label {
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+  background: var(--t-surface);
+  transform: translateY(-24px) scale(0.75);
+}
+
+/* ===== FLUENT UI — label above, 4px radius, 32px control (Fluent 2) ===== */
+.s-input-fluent input {
+  padding: 6px 10px;
+  font-size: 14px;
+  min-height: 32px;
+  box-sizing: border-box;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: 1px solid var(--t-border);
+  border-radius: 4px;
+}
+.s-input-fluent input:hover {
+  border-color: color-mix(in srgb, var(--t-text) 60%, transparent);
+}
+.s-input-fluent.focused input {
+  border-bottom: 2px solid var(--t-primary);
+  padding-bottom: 5px; /* offset the 2px bottom border so the layout doesn't shift */
+}
+.s-input-fluent .s-input-label-above {
+  font-size: 13px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--t-text) 70%, transparent);
+  margin-bottom: 4px;
+}
+.s-input-fluent.focused .s-input-label-above {
+  color: var(--t-primary);
+}
+
+/* ===== BRUTALIST UI ===== */
+.s-input-brutalist input {
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--t-text);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.s-input-brutalist input:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--t-text);
+}
+.s-input-brutalist.focused input {
+  border-color: var(--t-primary);
+  box-shadow: 5px 5px 0 var(--t-primary);
+  transform: translate(-1px, -1px);
+}
+
+/* ===== PIXEL UI ===== */
+.s-input-pixel input {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: 0;
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.25), inset 3px 3px 0 rgba(255,255,255,0.1);
+  image-rendering: pixelated;
+  transition: all 0.1s steps(3);
+}
+.s-input-pixel input:hover {
+  border-color: var(--t-secondary);
+}
+.s-input-pixel.focused input {
+  border-color: var(--t-secondary);
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.25), inset 3px 3px 0 rgba(255,255,255,0.1), 0 0 0 3px var(--t-shadow);
+  color: var(--t-text);
+}
+/* ===== NEON UI ===== */
+.s-input-neon input {
+  padding: 12px 16px;
+  font-size: 15px;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: var(--t-input-radius);
+  box-shadow: 0 0 5px var(--t-primary), inset 0 0 5px rgba(0, 0, 0, 0.5);
+  animation: neonPulse 3s ease-in-out infinite alternate;
+  transition: all 0.3s ease;
+}
+.s-input-neon input:hover {
+  box-shadow: 0 0 8px var(--t-primary), 0 0 16px var(--t-shadow), inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.s-input-neon.focused input {
+  box-shadow: 0 0 10px var(--t-primary), 0 0 25px var(--t-primary), 0 0 50px var(--t-shadow), inset 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: none;
+}
+@keyframes neonPulse {
+  0% { box-shadow: 0 0 4px var(--t-primary), inset 0 0 4px rgba(0, 0, 0, 0.5); }
+  100% { box-shadow: 0 0 8px var(--t-primary), 0 0 12px var(--t-shadow), inset 0 0 6px rgba(0, 0, 0, 0.4); }
+}
+
+/* ===== METRO ===== */
+.s-input-metro input {
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: 0;
+}
+.s-input-metro input:hover {
+  background: color-mix(in srgb, var(--t-primary) 5%, var(--t-surface));
+}
+.s-input-metro.focused input {
+  border-color: var(--t-primary);
+  background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface));
+}
+
+/* ===== BOOTSTRAP — label above ===== */
+.s-input-bootstrap input {
+  padding: 8px 12px;
+  font-size: 15px;
+  min-height: 38px;
+  box-sizing: border-box;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: 6px;
+  box-shadow: var(--t-shadow-xs);
+}
+.s-input-bootstrap input:hover {
+  border-color: color-mix(in srgb, var(--t-primary) 50%, var(--t-border));
+}
+.s-input-bootstrap.focused input {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 0 3px var(--t-shadow);
+}
+.s-input-bootstrap .s-input-label-above {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* ===== CARTOON ===== */
+.s-input-cartoon input {
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0 var(--t-primary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.s-input-cartoon input:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--t-primary);
+}
+.s-input-cartoon.focused input {
+  border-color: var(--t-primary);
+  box-shadow: 5px 5px 0 var(--t-secondary);
+  transform: translate(-1px, -1px);
+}
+
+/* ===== ILLUSTRATION ===== */
+.s-input-illustration input {
+  padding: 12px 16px;
+  font-size: 15px;
+  font-style: italic;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--t-border);
+  transition: all 0.2s ease;
+}
+.s-input-illustration input:hover {
+  box-shadow: 4px 4px 0 var(--t-border);
+  transform: translate(-0.5px, -0.5px);
+}
+.s-input-illustration.focused input {
+  border-color: var(--t-primary);
+  box-shadow: 3px 3px 0 var(--t-primary);
+}
+
+/* ===== CARBON — label above, 0 radius, 40px control ===== */
+.s-input-carbon input {
+  padding: 8px 12px;
+  font-size: 14px;
+  min-height: 40px;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: 1px solid var(--t-border);
+  border-bottom: 2px solid var(--t-border);
+  border-radius: 0;
+}
+.s-input-carbon input:hover {
+  border-bottom-color: var(--t-text);
+}
+.s-input-carbon.focused input {
+  border-bottom-color: var(--t-primary);
+}
+.s-input-carbon .s-input-label-above {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--t-text);
+  margin-bottom: 8px;
+}
+.s-input-carbon.focused .s-input-label-above {
+  color: var(--t-primary);
+}
+
+/* ===== LIQUID GLASS — label above the glass; glass lives on the field box ===== */
+.s-input-liquid-glass .s-input-field {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+.s-input-liquid-glass:hover .s-input-field {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+}
+.s-input-liquid-glass.focused .s-input-field {
+  background: rgba(255,255,255,0.18);
+  border-color: var(--t-primary);
+  box-shadow: var(--t-shadow-lg), inset 0 1px 0 rgba(255,255,255,0.4), 0 0 20px var(--t-shadow);
+}
+.s-input-liquid-glass input {
+  padding: 12px 18px;
+  font-size: 15px;
+  background: transparent;
+  color: var(--t-text);
+  border: none;
+  border-radius: 16px;
+}

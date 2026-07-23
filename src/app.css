@@ -1,0 +1,494 @@
+@import "tailwindcss";
+@import "./lib/components/theme.css";
+
+:root {
+  font-family: system-ui, -apple-system, sans-serif;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+/* ===== PAGE STYLES — All driven by theme variables ===== */
+.page-bg {
+  background: var(--t-surface-bg);
+  color: var(--t-text);
+  transition: background 0.3s, color 0.3s;
+}
+/* The active font stack. --t-font is set by .ms-font-<style> (per-style default)
+ * in theme.css, overridden inline by initMultistyleUI({ font }) / the header
+ * font selector. Children inherit, so applying it on .demo-root is enough. */
+.demo-root {
+  font-family: var(--t-font);
+}
+/* Demo theme editor uses inline custom properties; force the page surface
+   to a dark palette when the demo is in dark mode so components can be
+   reviewed against a dark background. */
+.demo-root.dark-mode {
+  --t-surface-bg: #0a1120 !important;
+  --t-card-bg: #1e293b !important;
+  --t-card-border-color: #334155 !important;
+  --t-text: #e2e8f0 !important;
+  --t-text-muted: #94a3b8 !important;
+  --t-border: #334155 !important;
+  background: var(--t-surface-bg) !important;
+  color: var(--t-text) !important;
+}
+
+.page-header {
+  background: color-mix(in srgb, var(--t-card-bg) 95%, transparent);
+  border-color: var(--t-card-border-color);
+  color: var(--t-text);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.demo-card {
+  background: var(--t-card-bg);
+  border-color: var(--t-card-border-color);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.demo-section-title {
+  color: var(--t-text);
+  border-color: var(--t-border);
+}
+
+/* Top-level category tabs: horizontally scrollable on narrow screens so the
+   tab row never forces page-level horizontal overflow. Tabs keep their
+   natural width (no shrink/wrap) and the row scrolls when they overflow. */
+.category-tabs .s-tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.category-tabs .s-tab {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.category-tabs .s-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+.category-tabs .s-tabs::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--t-text) 20%, transparent);
+  border-radius: 999px;
+}
+.category-tabs .s-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.demo-label {
+  color: var(--t-text-muted);
+}
+
+.demo-text {
+  color: var(--t-text-muted);
+}
+
+.header-select {
+  background: var(--t-card-bg);
+  color: var(--t-text);
+  border-color: var(--t-card-border-color);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.header-label {
+  color: var(--t-text-muted);
+}
+
+.page-title {
+  color: var(--t-text);
+}
+
+.settings-gear {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--t-card-border-color);
+  border-radius: 9999px;
+  background: var(--t-card-bg);
+  color: var(--t-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.settings-gear:hover {
+  background: var(--t-primary);
+  color: white;
+  transform: rotate(30deg);
+}
+
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.settings-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  width: min(28rem, calc(100vw - 1rem));
+  background: var(--t-card-bg);
+  color: var(--t-text);
+  border-left: 1px solid var(--t-card-border-color);
+  box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.25);
+  animation: slide-settings-in 180ms ease-out;
+}
+
+.settings-sidebar-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--t-card-border-color);
+}
+
+.settings-close {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--t-card-border-color);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--t-text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.settings-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: calc(100svh - 5rem);
+}
+
+/* Layout demo stage: dashed frame so align/justify/fill effects are visible */
+.layout-stage {
+  border: 1px dashed var(--t-card-border-color);
+  border-radius: 8px;
+  padding: 6px;
+  background: color-mix(in srgb, var(--t-surface-bg) 60%, transparent);
+}
+
+.settings-panel {
+  /* Padding handled by Card; only keep override for gap behavior */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.settings-panel-title {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.settings-copy-status {
+  color: var(--t-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.custom-css-code {
+  max-height: 22rem;
+  overflow: auto;
+  padding: 0.875rem;
+  border-radius: calc(var(--t-card-radius) - 2px);
+  border: 1px solid var(--t-card-border-color);
+  background: color-mix(in srgb, var(--t-surface-bg) 92%, var(--t-primary));
+  color: var(--t-text);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.settings-copy-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--t-btn-radius);
+  border: 1px solid var(--t-primary);
+  background: var(--t-primary);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes slide-settings-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ===== PRISM.JS SYNTAX HIGHLIGHTING ===== */
+.component-code {
+  position: relative;
+}
+/* Prism.js token colors – soft, works on both light and dark backgrounds */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--t-text-hint, #94a3b8);
+}
+.token.punctuation {
+  color: color-mix(in srgb, var(--t-text) 60%, transparent);
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f472b6;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #34d399;
+}
+.token.operator,
+.token.entity,
+.token.url {
+  color: #fbbf24;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #818cf8;
+}
+.token.function,
+.token.class-name {
+  color: #60a5fa;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f97316;
+}
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+/* ===== GLASSMORPHISM DEMO BACKGROUND ===== */
+/* Light-mode liquid-glass: the layout-demo tiles (.demo-card) and stage are
+ * flat white via --t-card-bg; make them dark translucent glass so white text
+ * reads and the page glass shows through. Dark mode already uses a dark
+ * --t-card-bg, so this is scoped to light mode only. */
+html:not(.dark) .glass-page-bg .demo-card {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+html:not(.dark) .glass-page-bg .layout-stage {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.demo-card-glass .demo-label {
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.glass-page-bg {
+  background:
+    linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(236,72,153,0.1) 30%, rgba(14,165,233,0.1) 60%, rgba(34,197,94,0.08) 100%),
+    url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') center/cover no-repeat fixed !important;
+}
+
+.component-code {
+  background: var(--t-surface);
+  border: 1px solid var(--t-card-border-color);
+  border-radius: calc(var(--t-card-radius) - 2px);
+  padding: 2rem 0.875rem 0.875rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--t-text);
+}
+
+.component-code-wrapper {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border: 1px solid var(--t-card-border-color);
+  border-radius: 4px;
+  background: var(--t-card-bg);
+  color: var(--t-text);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+  z-index: 2;
+  line-height: 1.4;
+}
+
+.component-code-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: var(--t-primary);
+  color: white;
+  border-color: var(--t-primary);
+}
+
+html.dark .copy-btn:hover {
+  background: var(--t-primary);
+  color: white;
+}
+/* ===== SETTINGS SIDEBAR THEME AWARENESS =====
+ * Replace hardcoded Tailwind grays with theme variables
+ * so the sidebar panels respect the selected theme/color combo.
+ */
+.settings-sidebar .text-gray-400 {
+  color: var(--t-text-hint);
+}
+.settings-sidebar .text-gray-500 {
+  color: var(--t-text-hint);
+}
+.settings-sidebar .text-gray-600 {
+  color: var(--t-text-hint);
+}
+html.dark .settings-sidebar .dark\:text-gray-300 {
+  color: var(--t-text-hint);
+}
+
+.drawer-nav-link {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+.drawer-nav-link:hover {
+  background: color-mix(in srgb, var(--t-card-surface) 80%, white);
+}
+
+/* ===== LIQUID GLASS — FORCE WHITE TEXT & DARK SURFACES =====
+ * Override theme CSS variables so EVERY component inherits
+ * white text and dark glass surfaces regardless of light/dark mode.
+ * The frosted glass surface is dark (rgba(0,0,0,0.35)), so theme's
+ * light-mode colors would be invisible without this override.
+ */
+.glass-page-bg.glass-page-bg {
+  --t-text: rgba(255,255,255,0.92) !important;
+  --t-text-hint: rgba(255,255,255,0.55) !important;
+  --t-text-muted: rgba(255,255,255,0.55) !important;
+  --t-card-bg: rgba(0,0,0,0.3) !important;
+  --t-surface: rgba(0,0,0,0.3) !important;
+  --t-surface-bg: rgba(0,0,0,0.25) !important;
+  --t-card-border-color: rgba(255,255,255,0.1) !important;
+  color: rgba(255,255,255,0.92);
+}
+.glass-page-bg.glass-page-bg .header-select {
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.92);
+  border-color: rgba(255,255,255,0.15);
+}
+.glass-page-bg.glass-page-bg .settings-gear {
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.92);
+  border-color: rgba(255,255,255,0.15);
+}
+.glass-page-bg.glass-page-bg .settings-gear:hover {
+  background: var(--t-primary);
+  color: white;
+}
+
+html.dark .glass-page-bg {
+  background:
+    linear-gradient(135deg, rgba(30,0,60,0.6) 0%, rgba(10,10,40,0.5) 40%, rgba(0,20,50,0.5) 100%),
+    url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?w=1920&q=80') center/cover no-repeat fixed !important;
+}
+
+/* ===== TRANSITION KEYFRAMES (Presence helper replaces Svelte transitions) ===== */
+.t-fade-enter { animation: t-fade-in 0.18s ease forwards; }
+.t-fade-exit  { animation: t-fade-out 0.18s ease forwards; }
+.t-scale-enter { animation: t-scale-in 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-scale-exit  { animation: t-scale-out 0.15s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-fly-enter { animation: t-fly-in 0.18s ease forwards; }
+.t-fly-exit  { animation: t-fly-out 0.18s ease forwards; }
+.t-slide-enter { animation: t-fly-in 0.35s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-exit  { animation: t-fly-out 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+
+@keyframes t-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes t-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes t-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes t-scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+@keyframes t-fly-in {
+  from { opacity: 0; transform: translate(var(--t-fly-x, 0), var(--t-fly-y, 0)); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+@keyframes t-fly-out {
+  from { opacity: 1; transform: translate(0, 0); }
+  to { opacity: 0; transform: translate(var(--t-fly-x, 0), var(--t-fly-y, 0)); }
+}
+/* ===== DRAWER SLIDE (per position) ===== */
+.t-slide-left-enter   { animation: t-slide-l-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-left-exit    { animation: t-slide-l-out 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-right-enter  { animation: t-slide-r-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-right-exit   { animation: t-slide-r-out 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-top-enter    { animation: t-slide-t-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-top-exit     { animation: t-slide-t-out 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-bottom-enter { animation: t-slide-b-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards; }
+.t-slide-bottom-exit  { animation: t-slide-b-out 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+@keyframes t-slide-l-in  { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes t-slide-l-out { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes t-slide-r-in  { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes t-slide-r-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes t-slide-t-in  { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes t-slide-t-out { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+@keyframes t-slide-b-in  { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes t-slide-b-out { from { transform: translateY(0); } to { transform: translateY(100%); } }

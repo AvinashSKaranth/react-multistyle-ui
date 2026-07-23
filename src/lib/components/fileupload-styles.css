@@ -1,0 +1,117 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow, radius. Style-controlled: shape. */
+.s-fileupload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  border: var(--t-border-width) dashed var(--t-border);
+  border-radius: var(--t-input-radius);
+  background: var(--t-surface);
+  color: var(--t-text);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  position: relative;
+}
+.s-fileupload:hover {
+  border-color: var(--t-primary);
+  background: color-mix(in srgb, var(--t-primary) 4%, var(--t-surface));
+}
+.s-fileupload.dragging {
+  border-color: var(--t-primary);
+  background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface));
+}
+.s-fileupload.disabled { opacity: 0.45; pointer-events: none; }
+.s-fileupload-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.s-fileupload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.s-fileupload-icon { color: var(--t-text-muted); }
+.s-fileupload-label { font-size: 14px; font-weight: 500; }
+.s-fileupload-hint { font-size: 12px; color: var(--t-text-muted); }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-fileupload-brutalist {
+  border: var(--t-border-width) dashed var(--t-text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--t-text);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+/* Pixel */
+.s-fileupload-pixel {
+  border: var(--t-border-width) dashed var(--t-primary);
+  border-radius: 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Neon */
+.s-fileupload-neon {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 5px var(--t-primary);
+}
+.s-fileupload-neon:hover { box-shadow: 0 0 10px var(--t-primary), 0 0 20px var(--t-shadow); }
+
+/* Metro */
+.s-fileupload-metro {
+  border-radius: 0;
+  border: var(--t-border-width) dashed var(--t-primary);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+/* Bootstrap */
+.s-fileupload-bootstrap {
+  border-radius: 6px;
+  border: var(--t-border-width) dashed var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-fileupload-bootstrap:hover { box-shadow: 0 0 0 3px var(--t-shadow); border-color: var(--t-primary); }
+
+/* Cartoon */
+.s-fileupload-cartoon {
+  border-radius: 16px;
+  border: var(--t-border-width) dashed var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-primary);
+  font-weight: 700;
+}
+
+/* Illustration */
+.s-fileupload-illustration {
+  border-radius: 8px;
+  border: var(--t-border-width) dashed var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-border);
+  font-style: italic;
+}
+
+/* Carbon */
+.s-fileupload-carbon {
+  border-radius: 0;
+  border: var(--t-border-width) dashed var(--t-border);
+  border-bottom-width: 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* Liquid Glass */
+.s-fileupload-liquid-glass {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px dashed rgba(255,255,255,0.3);
+  box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255,255,255,0.3);
+}

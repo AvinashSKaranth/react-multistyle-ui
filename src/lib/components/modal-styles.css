@@ -1,0 +1,95 @@
+/* ===== BASE ===== */
+.s-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.s-modal {
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--t-shadow-xl);
+  position: relative;
+}
+.s-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.s-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.s-modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--t-text-muted);
+  transition: color 0.2s;
+  line-height: 1;
+  padding: 0;
+}
+.s-modal-close:hover { color: var(--t-text); }
+.s-modal-body { margin-top: 12px; }
+
+/* ===== SIZES ===== */
+.s-modal-small { max-width: 320px; }
+.s-modal-medium { max-width: 480px; }
+.s-modal-large { max-width: 720px; }
+.s-modal-full { max-width: 100%; width: 100%; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-modal-brutalist { border: 3px solid var(--t-text); border-radius: 0; box-shadow: 8px 8px 0 var(--t-text); }
+
+/* Pixel */
+.s-modal-pixel { border: 3px solid var(--t-primary); border-radius: 0; }
+
+/* Neon */
+.s-modal-neon { border-color: var(--t-primary); box-shadow: 0 0 20px var(--t-primary), 0 0 60px var(--t-shadow); }
+
+/* Metro */
+.s-modal-metro { border-radius: 0; border: 2px solid var(--t-primary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+
+/* Bootstrap */
+.s-modal-bootstrap { border-radius: 6px; border: 1px solid var(--t-border); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+
+/* Cartoon */
+.s-modal-cartoon { border-radius: 16px; border: 3px solid var(--t-text); box-shadow: 8px 8px 0 var(--t-primary); }
+
+/* Illustration */
+.s-modal-illustration { border-radius: 8px; border: 2px solid var(--t-text); box-shadow: 5px 5px 0 var(--t-border); }
+
+/* Carbon */
+.s-modal-carbon { border-radius: 0; border: 1px solid var(--t-border); border-top: 3px solid var(--t-primary); font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Liquid Glass */
+.s-modal-liquid-glass {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.s-modal-liquid-glass .demo-label,
+.s-modal-liquid-glass .text-muted,
+.s-modal-liquid-glass .text-hint { color: rgba(255,255,255,0.55); }
+
+/* Borderless overlays — declared last to win source-order over base border. */
+.s-modal-material,
+.s-modal-material3,
+.s-modal-fluent { border: none; }

@@ -1,0 +1,364 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow. Style-controlled: shape. */
+.s-mselect-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+.mselect-control {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  position: relative;
+  min-height: 56px;
+  padding: 14px 36px 14px 12px;
+  background: var(--t-surface);
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mselect-control:hover {
+  border-color: color-mix(in srgb, var(--t-text) 50%, var(--t-border));
+}
+.s-mselect-wrapper.focused .mselect-control {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 0 3px var(--t-shadow);
+}
+.s-mselect-wrapper.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.mselect-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.mselect-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 13px;
+  background: color-mix(in srgb, var(--t-primary) 12%, var(--t-surface));
+  color: var(--t-primary);
+  border-radius: 999px;
+}
+.mselect-chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+}
+.mselect-dropdown {
+  position: fixed;
+  background: var(--t-surface);
+  /* The dropdown is portaled to <body>, so it cannot inherit the wrapper's
+   * --t-text. Apply the theme text color here so option text contrasts the
+   * surface in both light and dark mode (dark text on white, light on dark). */
+  color: var(--t-text);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-card-radius);
+  box-shadow: var(--t-shadow-md);
+  z-index: 10000;
+  max-height: 200px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.mselect-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: var(--t-text);
+}
+.mselect-option:hover {
+  background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface));
+}
+.mselect-option.selected {
+  background: color-mix(in srgb, var(--t-primary) 15%, var(--t-surface));
+  color: var(--t-primary);
+  font-weight: 500;
+}
+.mselect-option input {
+  accent-color: var(--t-primary);
+}
+.mselect-placeholder {
+  color: var(--t-text-muted);
+  font-size: 14px;
+}
+.mselect-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--t-border);
+  transition: color 0.2s, transform 0.2s;
+}
+.s-mselect-wrapper.open .mselect-arrow {
+  color: var(--t-primary);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* ===== FLOATING LABEL ===== */
+.s-mselect-floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 12px;
+  top: 12px;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+  z-index: 1;
+}
+.s-mselect-wrapper.floated .s-mselect-floating-label {
+  transform: translateY(-10px) scale(0.75);
+  color: var(--t-primary);
+}
+
+/* ===== STATIC LABEL ABOVE (fluent, carbon, bootstrap, brutalist, pixel, neon,
+   metro, cartoon, illustration, liquid-glass) ===== */
+.s-mselect-label-above {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t-text);
+  padding: 0 2px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+/* ===== FLOATING LABEL PADDING (Material / Material 3 only) ===== */
+.s-mselect-material .mselect-control,
+.s-mselect-material3 .mselect-control {
+  padding-top: 27px;
+  padding-bottom: 9px;
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Material */
+.s-mselect-material .mselect-control {
+  background: color-mix(in srgb, var(--t-primary) 4%, var(--t-surface));
+  border: none;
+  border-bottom: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius) var(--t-input-radius) 0 0;
+}
+.s-mselect-material .mselect-control:hover {
+  background: color-mix(in srgb, var(--t-primary) 8%, var(--t-surface));
+  border-bottom-color: var(--t-text);
+}
+.s-mselect-material.focused .mselect-control {
+  border-bottom-color: var(--t-primary);
+  background: color-mix(in srgb, var(--t-primary) 10%, var(--t-surface));
+  box-shadow: none;
+}
+.s-mselect-material .s-mselect-floating-label {
+  left: 12px;
+  top: 14px;
+  font-size: 16px;
+}
+.s-mselect-material.floated .s-mselect-floating-label {
+  transform: translateY(-12px) scale(0.75);
+  color: var(--t-primary);
+}
+.s-mselect-material:not(.focused).has-value .s-mselect-floating-label {
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+}
+
+/* Material 3 */
+.s-mselect-material3 .mselect-control {
+  background: var(--t-surface);
+  border: var(--t-border-width) solid var(--t-border);
+  border-radius: var(--t-input-radius);
+}
+.s-mselect-material3 .mselect-control:hover {
+  border-color: var(--t-text);
+}
+.s-mselect-material3.focused .mselect-control {
+  border-color: var(--t-primary);
+  border-width: calc(var(--t-border-width) + 0.5px);
+}
+.s-mselect-material3 .s-mselect-floating-label {
+  left: 12px;
+  top: 14px;
+  font-size: 16px;
+  background: transparent;
+  padding: 0 4px;
+}
+.s-mselect-material3.floated .s-mselect-floating-label {
+  transform: translateY(-22px) scale(0.75);
+  color: var(--t-primary);
+  background: var(--t-surface);
+}
+.s-mselect-material3:not(.focused).has-value .s-mselect-floating-label {
+  color: color-mix(in srgb, var(--t-text) 50%, transparent);
+  background: var(--t-surface);
+  transform: translateY(-22px) scale(0.75);
+}
+
+/* Fluent 2 — label above, 4px radius, 32px control */
+.s-mselect-fluent .mselect-control {
+  min-height: 32px;
+  padding: 6px 36px 6px 10px;
+  font-size: 14px;
+  background: var(--t-surface);
+  border: 1px solid var(--t-border);
+  border-radius: 4px;
+  box-shadow: none;
+}
+.s-mselect-fluent .mselect-control:hover {
+  border-color: color-mix(in srgb, var(--t-text) 60%, transparent);
+}
+.s-mselect-fluent.focused .mselect-control {
+  border-bottom: 2px solid var(--t-primary);
+  padding-bottom: 5px;
+  box-shadow: none;
+}
+.s-mselect-fluent .s-mselect-label-above {
+  font-size: 13px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--t-text) 70%, transparent);
+  margin-bottom: 4px;
+}
+.s-mselect-fluent.focused .s-mselect-label-above {
+  color: var(--t-primary);
+}
+
+/* Bootstrap — label above */
+.s-mselect-bootstrap .mselect-control {
+  border-radius: 6px;
+  border: var(--t-border-width) solid var(--t-border);
+  box-shadow: var(--t-shadow-xs);
+}
+.s-mselect-bootstrap.focused .mselect-control {
+  box-shadow: 0 0 0 3px var(--t-shadow);
+  border-color: var(--t-primary);
+}
+.mselect-dropdown.s-mselect-bootstrap { border-radius: 6px; }
+.s-mselect-bootstrap .s-mselect-label-above {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* Carbon — label above, 0 radius, 40px control */
+.s-mselect-carbon .mselect-control {
+  min-height: 40px;
+  padding: 8px 36px 8px 12px;
+  font-size: 14px;
+  border-radius: 0;
+  border: 1px solid var(--t-border);
+  border-bottom: 2px solid var(--t-border);
+  font-family: 'IBM Plex Sans', sans-serif;
+  box-shadow: none;
+}
+.s-mselect-carbon.focused .mselect-control {
+  border-bottom-color: var(--t-primary);
+  box-shadow: none;
+}
+.mselect-dropdown.s-mselect-carbon { border-radius: 0; }
+.s-mselect-carbon .s-mselect-label-above {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--t-text);
+  margin-bottom: 8px;
+}
+.s-mselect-carbon.focused .s-mselect-label-above {
+  color: var(--t-primary);
+}
+/* Brutalist */
+.s-mselect-brutalist .mselect-control {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  border: var(--t-border-width) solid var(--t-text);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--t-text);
+}
+.mselect-dropdown.s-mselect-brutalist { border: var(--t-border-width) solid var(--t-text); border-radius: 0; box-shadow: 4px 4px 0 var(--t-text); }
+
+/* Pixel */
+.s-mselect-pixel .mselect-control {
+  font-family: 'Courier New', monospace;
+  border: var(--t-border-width) solid var(--t-primary);
+  border-radius: 0;
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.25), inset 3px 3px 0 rgba(255,255,255,0.1);
+}
+.mselect-dropdown.s-mselect-pixel { border: var(--t-border-width) solid var(--t-primary); border-radius: 0; }
+
+/* Neon */
+.s-mselect-neon .mselect-control {
+  border-color: var(--t-primary);
+  box-shadow: 0 0 5px var(--t-primary);
+}
+.mselect-dropdown.s-mselect-neon { border-color: var(--t-primary); box-shadow: 0 0 8px var(--t-primary); }
+
+/* Metro */
+.s-mselect-metro .mselect-control {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  font-weight: 600;
+  box-shadow: none;
+}
+.mselect-dropdown.s-mselect-metro { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); }
+
+/* Cartoon */
+.s-mselect-cartoon .mselect-control {
+  border-radius: 16px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-primary);
+  font-weight: 700;
+}
+.mselect-dropdown.s-mselect-cartoon { border-radius: 16px; border: var(--t-border-width) solid var(--t-text); box-shadow: 4px 4px 0 var(--t-primary); }
+
+/* Illustration */
+.s-mselect-illustration .mselect-control {
+  border-radius: 8px;
+  border: var(--t-border-width) solid var(--t-text);
+  box-shadow: 3px 3px 0 var(--t-border);
+  font-style: italic;
+}
+.mselect-dropdown.s-mselect-illustration { border-radius: 8px; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-border); }
+
+/* Liquid Glass */
+.s-mselect-liquid-glass .mselect-control {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: var(--t-shadow-md), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.mselect-dropdown.s-mselect-liquid-glass {
+  border-radius: 16px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  /* Portaled to <body>, outside .glass-page-bg, so make the glass dark enough
+   * that white option text reads in both light and dark mode. */
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+.mselect-dropdown.s-mselect-liquid-glass .mselect-option {
+  color: #ffffff;
+}
+.mselect-dropdown.s-mselect-liquid-glass .mselect-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.mselect-dropdown.s-mselect-liquid-glass .mselect-option.selected {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--t-primary);
+}
+
+

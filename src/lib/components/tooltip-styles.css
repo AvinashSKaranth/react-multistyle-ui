@@ -1,0 +1,53 @@
+/* ===== BASE ===== */
+/* Theme-controlled: colors, border-width, shadow. Style-controlled: shape. */
+.s-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+.s-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  background: var(--t-text);
+  color: var(--t-surface);
+  border-radius: var(--t-card-radius);
+  box-shadow: var(--t-shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+.s-tooltip-wrapper:hover .s-tooltip { opacity: 1; }
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-tooltip-brutalist .s-tooltip { border-radius: 0; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-text); font-family: 'Courier New', monospace; }
+
+/* Pixel */
+.s-tooltip-pixel .s-tooltip { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); font-family: 'Courier New', monospace; }
+
+/* Neon */
+.s-tooltip-neon .s-tooltip { box-shadow: 0 0 8px var(--t-primary); border: 1px solid var(--t-primary); }
+
+/* Metro */
+.s-tooltip-metro .s-tooltip { border-radius: 0; font-weight: 600; }
+
+/* Bootstrap */
+.s-tooltip-bootstrap .s-tooltip { border-radius: 4px; box-shadow: var(--t-shadow-md); }
+
+/* Cartoon */
+.s-tooltip-cartoon .s-tooltip { border-radius: 12px; border: var(--t-border-width) solid var(--t-text); box-shadow: 3px 3px 0 var(--t-primary); font-weight: 700; }
+
+/* Illustration */
+.s-tooltip-illustration .s-tooltip { border-radius: 6px; border: var(--t-border-width) solid var(--t-text); box-shadow: 2px 2px 0 var(--t-border); font-style: italic; }
+
+/* Carbon */
+.s-tooltip-carbon .s-tooltip { border-radius: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; }
+
+/* Liquid Glass */
+.s-tooltip-liquid-glass .s-tooltip { border-radius: 12px; backdrop-filter: blur(16px); background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); }

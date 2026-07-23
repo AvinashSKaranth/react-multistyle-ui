@@ -1,0 +1,6 @@
+/* ===== COLUMN ===== */
+/* Flex layout primitive — vertical stack. Dynamic gap/align/justify/fill are
+ * set via inline style by the component; this file holds flex best-practices
+ * that keep children from overflowing. */
+.s-column { box-sizing: border-box; }
+.s-column > * { min-height: 0; box-sizing: border-box; }

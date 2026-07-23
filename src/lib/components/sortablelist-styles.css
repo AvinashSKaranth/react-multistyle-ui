@@ -1,0 +1,136 @@
+/* ===== BASE ===== */
+.s-sortablelist {
+  display: flex;
+  gap: 8px;
+}
+.s-sortablelist-vertical {
+  flex-direction: column;
+}
+.s-sortablelist-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.s-sortablelist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--t-card-radius);
+  border: var(--t-border-width) solid var(--t-card-border-color);
+  background: var(--t-card-bg);
+  box-shadow: var(--t-shadow-sm);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+.s-sortablelist-content {
+  flex: 1;
+  min-width: 0;
+}
+.s-sortablelist-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  margin: -4px 0;
+  align-self: stretch;
+  border: none;
+  background: transparent;
+  cursor: grab;
+  color: var(--t-text-hint);
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+  touch-action: none;
+}
+.s-sortablelist-handle:active {
+  cursor: grabbing;
+}
+.s-sortablelist-handle:hover {
+  color: var(--t-text);
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-sortablelist-brutalist .s-sortablelist-item {
+  border-radius: 0;
+  border-width: 3px;
+  border-color: var(--t-text);
+  box-shadow: 5px 5px 0 var(--t-text);
+}
+
+/* Pixel */
+.s-sortablelist-pixel .s-sortablelist-item {
+  border-radius: 0;
+  border-width: 3px;
+  border-color: var(--t-primary);
+  box-shadow: 3px 3px 0 var(--t-primary);
+  image-rendering: pixelated;
+}
+
+/* Neon */
+.s-sortablelist-neon .s-sortablelist-item {
+  box-shadow: 0 0 6px var(--t-primary), 0 0 12px color-mix(in srgb, var(--t-primary) 40%, transparent);
+  border-color: var(--t-primary);
+}
+
+/* Metro */
+.s-sortablelist-metro .s-sortablelist-item {
+  border-radius: 0;
+  border-width: 0 0 2px 0;
+  box-shadow: none;
+}
+
+/* Bootstrap */
+.s-sortablelist-bootstrap .s-sortablelist-item {
+  border-radius: 6px;
+  background: var(--t-card-bg);
+  border-color: var(--t-card-border-color);
+  box-shadow: var(--t-shadow-xs);
+}
+
+/* Cartoon */
+.s-sortablelist-cartoon .s-sortablelist-item {
+  border-radius: 12px;
+  border-width: 2px;
+  border-color: var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-primary);
+}
+
+/* Illustration */
+.s-sortablelist-illustration .s-sortablelist-item {
+  border-radius: 16px;
+  border-width: 2px;
+  box-shadow: 3px 3px 0 var(--t-border);
+}
+
+/* Carbon */
+.s-sortablelist-carbon .s-sortablelist-item {
+  border-radius: 0;
+  border-width: 1px;
+  box-shadow: none;
+}
+
+/* Liquid Glass */
+.s-sortablelist-liquid-glass .s-sortablelist-item {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+/* Material 3 */
+.s-sortablelist-material3 .s-sortablelist-item {
+  border-radius: 28px;
+  box-shadow: var(--t-shadow-xs);
+}
+
+/* Fluent */
+.s-sortablelist-fluent .s-sortablelist-item {
+  border-radius: 4px;
+  box-shadow: var(--t-shadow-xs);
+}
+
+/* Carbon */
+.s-sortablelist-carbon .s-sortablelist-item {
+  border-radius: 0;
+}

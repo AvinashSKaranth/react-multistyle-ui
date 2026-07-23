@@ -1,0 +1,6 @@
+/* ===== GRID ===== */
+/* CSS Grid layout primitive. Dynamic columns/rows/gap/align/justify/fill are
+ * set via inline style by the component; this file holds box-sizing fixes so
+ * children don't overflow their cells. */
+.s-grid { box-sizing: border-box; }
+.s-grid > * { min-width: 0; min-height: 0; box-sizing: border-box; }

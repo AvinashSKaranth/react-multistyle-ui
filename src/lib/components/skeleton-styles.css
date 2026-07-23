@@ -1,0 +1,45 @@
+/* ===== BASE ===== */
+/* Theme-controlled: shimmer colors, radius. Style-controlled: shape. */
+.s-skeleton {
+  background: linear-gradient(90deg, var(--t-border) 25%, color-mix(in srgb, var(--t-border) 60%, var(--t-surface)) 50%, var(--t-border) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: var(--t-card-radius);
+}
+.s-skeleton-text { border-radius: 4px; }
+.s-skeleton-circle { border-radius: 50%; }
+.s-skeleton-rect { border-radius: var(--t-card-radius); }
+
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Brutalist */
+.s-skeleton-brutalist { border-radius: 0; border: var(--t-border-width) solid var(--t-text); }
+
+/* Pixel */
+.s-skeleton-pixel { border-radius: 0; border: var(--t-border-width) solid var(--t-primary); animation-timing-function: steps(5); }
+
+/* Neon */
+.s-skeleton-neon { box-shadow: 0 0 4px var(--t-primary); }
+
+/* Metro */
+.s-skeleton-metro { border-radius: 0; }
+
+/* Bootstrap */
+.s-skeleton-bootstrap { border-radius: 4px; }
+
+/* Cartoon */
+.s-skeleton-cartoon { border-radius: 12px; border: var(--t-border-width) solid var(--t-text); }
+
+/* Illustration */
+.s-skeleton-illustration { border-radius: 6px; border: var(--t-border-width) solid var(--t-text); }
+
+/* Carbon */
+.s-skeleton-carbon { border-radius: 0; }
+
+/* Liquid Glass */
+.s-skeleton-liquid-glass { background: rgba(255,255,255,0.08); border-radius: 12px; backdrop-filter: blur(8px); }

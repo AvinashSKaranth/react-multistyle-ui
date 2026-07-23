@@ -1,0 +1,174 @@
+/* ===== BASE ===== */
+.s-chart {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  background: var(--t-surface);
+  border-radius: var(--t-card-radius);
+  border: var(--t-border-width) solid var(--t-card-border-color);
+  overflow: hidden;
+  /* block (not flex) so Chart.js can measure the container cleanly. A flex
+     container with the canvas as a flex item creates a sizing circular
+     dependency — the canvas's size affects the container's size, so the
+     ResizeObserver misreads on the first layout pass and computes a too-small
+     chartArea; Chart.js then draws bars but hides the axis labels/ticks for
+     lack of room. On remount the cached layout reads correctly. */
+  display: block;
+  padding: 12px;
+  /* Only transition cosmetic props — transitioning width/height/padding makes
+     the container resize during Chart.js's entry animation, which trips the
+     ResizeObserver mid-animation and stalls it / hides scale labels. */
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Let Chart.js own the canvas display size (responsive + maintainAspectRatio:
+   false). Forcing width/height with !important fights Chart.js's own sizing and
+   breaks retina/DPR handling. */
+.s-chart canvas {
+  display: block;
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+.s-chart-downloadable {
+  position: relative;
+}
+.s-chart-download-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--t-surface) 80%, transparent);
+  color: var(--t-text-hint);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.s-chart-downloadable:hover .s-chart-download-btn,
+.s-chart-download-btn:focus-visible {
+  opacity: 1;
+}
+.s-chart-download-btn:hover {
+  background: color-mix(in srgb, var(--t-primary) 15%, var(--t-surface) 85%);
+  color: var(--t-primary);
+}
+.s-chart-download-btn:active {
+  transform: scale(0.92);
+}
+
+/* ===== STYLE OVERRIDES ===== */
+
+/* Material (default) — clean, subtle */
+.s-chart-material {
+  border: var(--t-border-width) solid var(--t-card-border-color);
+}
+
+/* Material 3 — pill-like card */
+.s-chart-material3 {
+  border-radius: 20px;
+  border: none;
+  box-shadow: var(--t-shadow-md);
+}
+
+/* Fluent — thin, clean */
+.s-chart-fluent {
+  border-radius: 4px;
+  border: 1px solid var(--t-card-border-color);
+  box-shadow: var(--t-shadow-sm);
+}
+
+/* Brutalist — heavy, square, bold */
+.s-chart-brutalist {
+  border-radius: 0;
+  border: calc(var(--t-border-width) * 2) solid var(--t-text);
+  box-shadow: 5px 5px 0 var(--t-text);
+  padding: 16px;
+}
+
+/* Pixel — blocky, square */
+.s-chart-pixel {
+  border-radius: 0;
+  border: var(--t-border-width) solid var(--t-primary);
+  image-rendering: pixelated;
+}
+
+/* Neon — glow, dark bg */
+.s-chart-neon {
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--t-primary) 40%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--t-primary) 25%, transparent),
+              0 0 30px color-mix(in srgb, var(--t-primary) 10%, transparent);
+  background: var(--t-surface);
+}
+
+/* Metro — flat, borderless */
+.s-chart-metro {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding: 8px;
+}
+
+/* Bootstrap — soft, inset shadow */
+.s-chart-bootstrap {
+  border-radius: 8px;
+  border: 1px solid var(--t-card-border-color);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04), var(--t-shadow-sm);
+}
+
+/* Cartoon — thick, playful */
+.s-chart-cartoon {
+  border-radius: 16px;
+  border: calc(var(--t-border-width) * 2) solid var(--t-text);
+  box-shadow: 4px 4px 0 var(--t-secondary);
+  padding: 16px;
+}
+
+/* Illustration — soft, rounded */
+.s-chart-illustration {
+  border-radius: 12px;
+  border: var(--t-border-width) solid var(--t-card-border-color);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--t-primary) 10%, transparent);
+}
+
+/* Carbon — minimal, dark, thin axes */
+.s-chart-carbon {
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid var(--t-card-border-color);
+  border-left: 2px solid var(--t-card-border-color);
+  padding: 8px 8px 0 0;
+}
+
+/* Liquid Glass — translucent, blur */
+.s-chart-liquid-glass {
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+/* Liquid-glass surfaces force light text (see app.css), so the default
+   download button (color: var(--t-text-hint) on a --t-surface-tinted bg) goes
+   white-on-white in light mode. Give it a dark translucent glass + white icon
+   that reads in both light and dark. */
+.s-chart-liquid-glass .s-chart-download-btn {
+  background: rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px) saturate(1.4);
+  -webkit-backdrop-filter: blur(8px) saturate(1.4);
+}
+.s-chart-liquid-glass .s-chart-download-btn:hover,
+.s-chart-liquid-glass .s-chart-download-btn:focus-visible {
+  background: rgba(0, 0, 0, 0.42);
+  color: #ffffff;
+}
