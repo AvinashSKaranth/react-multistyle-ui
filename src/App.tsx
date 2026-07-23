@@ -386,18 +386,7 @@ export default function App() {
         <section className={sectionCls("form")}>
           <h2 className="demo-section-title text-2xl font-bold border-b pb-2 mb-4">Form Components</h2>
           <div className={gridCls("grid-cols-1 md:grid-cols-2 lg:grid-cols-3")}>
-            <DemoCard title="Buttons" style={st} theme={th} code={`<Row gap="8px" wrap>
-  <Select
-    options={${JSON.stringify([{value:"primary",label:"primary"},{value:"secondary",label:"secondary"},{value:"info",label:"info"},{value:"success",label:"success"},{value:"warning",label:"warning"},{value:"error",label:"error"}])}}
-    value="${btnPreset}"
-  />
-  <Select
-    options={${JSON.stringify([{value:"filled",label:"filled"},{value:"outlined",label:"outlined"},{value:"text",label:"text"},{value:"tonal",label:"tonal"}])}}
-    value="${btnVariant}"
-  />
-</Row>
-<Row gap="8px" wrap className="mt-3">
-  <Button
+            <DemoCard title="Buttons" style={st} theme={th} code={`<Button
     preset="${btnPreset}"
     variant="${btnVariant}"
   >Button</Button>
@@ -410,8 +399,7 @@ export default function App() {
     preset="${btnPreset}"
     icon="favorite"
     ariaLabel="fav"
-  />
-</Row>`}>
+  />`}>
               <Row gap="8px" wrap>
                 <Select style={st} theme={th} options={[{value:"primary",label:"primary"},{value:"secondary",label:"secondary"},{value:"info",label:"info"},{value:"success",label:"success"},{value:"warning",label:"warning"},{value:"error",label:"error"}]} value={btnPreset} onValueChange={setBtnPreset} />
                 <Select style={st} theme={th} options={[{value:"filled",label:"filled"},{value:"outlined",label:"outlined"},{value:"text",label:"text"},{value:"tonal",label:"tonal"}]} value={btnVariant} onValueChange={(v) => setBtnVariant(v as any)} />
