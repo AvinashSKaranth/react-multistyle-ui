@@ -1,6 +1,6 @@
 {
   "name": "react-multistyle-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A multi-style, multi-theme React 18 component library with multiple design styles and multiple color schemes (port of svelte-multistyle-ui)",
   "type": "module",
   "license": "MIT",
