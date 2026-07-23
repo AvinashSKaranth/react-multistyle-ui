@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 // Dev (demo gallery) config. Library build uses vite.config.lib.ts.
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: "./",
   server: { port: 5173 },
   build: {
     outDir: "docs",

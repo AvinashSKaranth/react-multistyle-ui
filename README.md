@@ -2,6 +2,8 @@
 
 A multi-style, multi-theme React 18 component library with multiple design languages and color schemes. Port of [svelte-multistyle-ui](https://github.com/avinashskaranth/svelte-multistyle-ui).
 
+**[🌐 Live Demo](https://avinashskaranth.github.io/react-multistyle-ui/)** — Component gallery with all styles, themes, and interactive examples.
+
 **Design styles:** Material, Material 3, Fluent, Brutalist, Neon, Metro, Bootstrap, Cartoon, Illustration, Liquid Glass, Carbon, Pixel
 
 **Color themes:** Default, Ocean, Forest, Rose, Midnight, Gold, Slate, Candy, Storm, Royal
